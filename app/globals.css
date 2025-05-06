@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 50% 98%;
+    --foreground: 340 10% 20%;
+
+    --card: 40 50% 98%;
+    --card-foreground: 340 10% 20%;
+
+    --popover: 40 50% 98%;
+    --popover-foreground: 340 10% 20%;
+
+    --primary: 335 100% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 260 70% 68%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 40 30% 94%;
+    --muted-foreground: 340 5% 45%;
+
+    --accent: 150 50% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 10% 85%;
+    --input: 340 10% 85%;
+    --ring: 335 100% 70%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 340 30% 10%;
+    --foreground: 40 30% 98%;
+
+    --card: 340 30% 12%;
+    --card-foreground: 40 30% 98%;
+
+    --popover: 340 30% 12%;
+    --popover-foreground: 40 30% 98%;
+
+    --primary: 335 100% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 260 70% 68%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 340 30% 20%;
+    --muted-foreground: 40 20% 70%;
+
+    --accent: 150 50% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 30% 25%;
+    --input: 340 30% 25%;
+    --ring: 335 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .flower-card {
+    @apply relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg;
+  }
+
+  .flower-card::before {
+    content: "";
+    @apply absolute -right-12 -top-12 h-24 w-24 rounded-full bg-flower-pink opacity-10;
+  }
+
+  .flower-card::after {
+    content: "";
+    @apply absolute -bottom-12 -left-12 h-24 w-24 rounded-full bg-flower-purple opacity-10;
+  }
+
+  .petal-button {
+    @apply relative overflow-hidden rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:bg-primary/90;
+  }
+
+  .petal-button::before {
+    content: "";
+    @apply absolute -right-4 -top-4 h-8 w-8 rounded-full bg-white opacity-20;
+  }
+
+  .petal-divider {
+    @apply relative my-8 h-px w-full bg-border;
+  }
+
+  .petal-divider::before {
+    content: "✿";
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-4 text-primary;
+  }
+}
