@@ -1,0 +1,1742 @@
+// This file contains the recipe data and utility functions
+
+// Define the Recipe type
+export interface Recipe {
+  slug: string
+  title: string
+  description: string
+  prepTime: string
+  cookTime: string
+  totalTime: string
+
+  servings: string
+  ingredients: string[]
+  instructions: string[]
+  notes?: string
+  tags: string[]
+}
+
+// Sample recipe data
+const recipes: Recipe[] = [
+  {
+    "slug": "gluten-free-banana-muffins",
+    "title": "Healthy Gluten-Free Banana Muffins (Dairy-Free)",
+    "description": "Moist, fluffy muffins made with almond flour, oat flour, and ripe bananas \u2014 perfect for a healthy breakfast or snack.",
+    "prepTime": "10 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "30 minutes",
+    "servings": "12 muffins",
+    "ingredients": [
+      "1 cup packed super-fine blanched almond flour",
+      "1 cup gluten-free oat flour",
+      "2 eggs",
+      "\u00bc cup pure maple syrup",
+      "3 ripe bananas, mashed",
+      "1 tsp vanilla extract",
+      "1 tsp baking soda",
+      "\u00bd tsp cinnamon",
+      "\u00bc tsp salt",
+      "Optional: \u00bd cup chocolate chips"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C). Line a muffin tin with liners.",
+      "In a large bowl, mix mashed bananas, eggs, maple syrup, and vanilla extract.",
+      "Add almond flour, oat flour, baking soda, cinnamon, and salt. Stir until just combined.",
+      "Fold in chocolate chips if using.",
+      "Divide batter evenly among muffin cups.",
+      "Bake for 20 minutes or until a toothpick comes out clean.",
+      "Cool in the pan for 5 minutes, then transfer to a wire rack to cool completely."
+    ],
+    "notes": "Muffins are freezer-friendly. Ensure almond flour is packed when measuring.",
+    "tags": [
+      "gluten-free",
+      "dairy-free",
+      "breakfast",
+      "muffins",
+      "healthy"
+    ]
+  },
+  {
+    "slug": "healthy-banana-muffins",
+    "title": "Healthy Banana Muffins",
+    "description": "Naturally sweetened and made with whole wheat flour, these banana muffins are soft, fluffy, and perfect for breakfast or snacking.",
+    "prepTime": "10 minutes",
+    "cookTime": "25 minutes",
+    "totalTime": "35 minutes",
+    "servings": "12 muffins",
+    "ingredients": [
+      "\u2153 cup melted coconut oil or extra-virgin olive oil",
+      "\u00bd cup maple syrup or honey",
+      "2 eggs",
+      "1 cup mashed ripe bananas (about 2\u20133 bananas)",
+      "\u00bc cup milk of choice",
+      "1 tsp baking soda",
+      "1 tsp vanilla extract",
+      "\u00bd tsp salt",
+      "\u00bd tsp cinnamon",
+      "1\u00be cups whole wheat flour",
+      "Optional: \u2153 cup old-fashioned oats, 1 tsp turbinado sugar for topping"
+    ],
+    "instructions": [
+      "Preheat oven to 325\u00b0F (165\u00b0C). Grease or line a muffin tin.",
+      "In a large bowl, whisk oil and maple syrup/honey. Add eggs and beat well.",
+      "Mix in mashed bananas and milk.",
+      "Add baking soda, vanilla, salt, and cinnamon. Stir to combine.",
+      "Add flour and stir until just combined. Fold in oats if using.",
+      "Divide batter among muffin cups. Sprinkle with turbinado sugar if desired.",
+      "Bake for 22\u201325 minutes or until a toothpick comes out clean.",
+      "Cool in the pan for 5 minutes, then transfer to a wire rack to cool completely."
+    ],
+    "notes": "Muffins freeze well. For vegan option, use flax eggs and non-dairy milk.",
+    "tags": [
+      "whole wheat",
+      "naturally sweetened",
+      "breakfast",
+      "muffins"
+    ]
+  },
+  {
+    "slug": "chocolate-peanut-butter-cookies",
+    "title": "Healthy Chocolate Peanut Butter Cookies",
+    "description": "Rich, chewy cookies made with peanut butter, cocoa, and two kinds of chips \u2014 a healthier indulgence in 20 minutes.",
+    "prepTime": "10 minutes",
+    "cookTime": "10 minutes",
+    "totalTime": "20 minutes",
+    "servings": "18 cookies",
+    "ingredients": [
+      "2 eggs",
+      "\u00be cup brown sugar",
+      "1 cup natural creamy peanut butter",
+      "\u00bc cup melted coconut oil",
+      "1 tsp vanilla extract",
+      "\u00bd cup unsweetened cocoa powder",
+      "\u00bd tsp baking soda",
+      "\u00bc tsp salt",
+      "\u00bd cup chocolate chips",
+      "\u00bd cup peanut butter chips"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C). Line a baking sheet with parchment paper.",
+      "In a large bowl, whisk eggs and brown sugar until combined.",
+      "Add peanut butter, coconut oil, and vanilla extract. Mix until smooth.",
+      "Stir in cocoa powder, baking soda, and salt until a thick batter forms.",
+      "Fold in chocolate and peanut butter chips.",
+      "Scoop heaping tablespoons of dough onto the prepared baking sheet.",
+      "Bake for 9\u201311 minutes. Cookies will appear soft but will set as they cool.",
+      "Cool on the baking sheet for 5 minutes, then transfer to a wire rack."
+    ],
+    "notes": "Store in an airtight container for up to 5 days. Cookies can be frozen for longer storage.",
+    "tags": [
+      "cookies",
+      "chocolate",
+      "peanut butter",
+      "gluten-free",
+      "dessert"
+    ]
+  },
+  {
+    "slug": "peach-crisp-for-one",
+    "title": "Peach Crisp for One",
+    "description": "A single-serve peach crisp with a spiced oat topping \u2014 quick, cozy, and perfect with a scoop of ice cream.",
+    "prepTime": "10 minutes",
+    "cookTime": "30 minutes",
+    "totalTime": "40 minutes",
+    "servings": "1 serving",
+    "ingredients": [
+      "1 medium peach, chopped",
+      "1 tsp sugar",
+      "1 tsp all-purpose flour",
+      "\u215b tsp ground ginger",
+      "\u00bc tsp vanilla extract",
+      "2 tbsp old-fashioned oats",
+      "1 tbsp all-purpose flour",
+      "1 tbsp brown sugar",
+      "1 tbsp softened butter"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C).",
+      "In a small bowl, mix chopped peach, sugar, flour, ginger, and vanilla. Transfer to a ramekin.",
+      "In another bowl, combine oats, flour, brown sugar, and butter until crumbly.",
+      "Sprinkle topping over the peach mixture.",
+      "Place ramekin on a baking sheet and bake for 30 minutes or until topping is golden and filling is bubbly.",
+      "Cool slightly before serving."
+    ],
+    "notes": "Can use canned peaches; drain before using. Serve with vanilla ice cream or whipped cream.",
+    "tags": [
+      "dessert",
+      "fruit",
+      "single-serve",
+      "easy"
+    ]
+  },
+  {
+    "slug": "traditional-key-lime-pie",
+    "title": "Traditional Key Lime Pie",
+    "description": "A classic tart and creamy key lime pie with graham cracker crust and whipped topping.",
+    "prepTime": "15 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "3 hours 30 minutes",
+    "servings": "8 servings",
+    "ingredients": [
+      "1\u00bd cups graham cracker crumbs",
+      "\u2153 cup light brown sugar",
+      "6 tbsp melted butter",
+      "\u215b tsp salt",
+      "3 large egg yolks",
+      "1 can (14 oz) sweetened condensed milk",
+      "\u00bd cup key lime juice",
+      "1 tbsp key lime zest",
+      "1 cup heavy whipping cream",
+      "2 tbsp powdered sugar",
+      "Lime slices for garnish"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C).",
+      "Mix graham cracker crumbs, brown sugar, melted butter, and salt. Press into a 9-inch pie dish.",
+      "Bake crust for 10 minutes. Let cool slightly.",
+      "In a bowl, whisk egg yolks, sweetened condensed milk, key lime juice, and zest until smooth.",
+      "Pour filling into crust and bake for 15 minutes.",
+      "Chill the pie for at least 3 hours.",
+      "Whip cream with powdered sugar and spread over the chilled pie.",
+      "Garnish with lime slices before serving."
+    ],
+    "notes": "Pie must chill completely before serving. Use freshly squeezed key lime juice for best flavor.",
+    "tags": [
+      "dessert",
+      "pie",
+      "classic",
+      "citrus",
+      "make-ahead"
+    ]
+  },
+  {
+    "slug": "cottage-cheese-egg-bites",
+    "title": "Cottage Cheese Egg Bites",
+    "description": "Protein-packed, fluffy egg bites made with cottage cheese and veggies \u2014 perfect for meal prep.",
+    "prepTime": "10 minutes",
+    "cookTime": "25 minutes",
+    "totalTime": "35 minutes",
+    "servings": "12 egg bites",
+    "ingredients": [
+      "6 large eggs",
+      "1 cup cottage cheese",
+      "\u00bd cup shredded cheese (cheddar, mozzarella, or your choice)",
+      "\u00bd cup finely chopped vegetables (e.g., bell peppers, spinach, mushrooms)",
+      "\u00bc tsp salt",
+      "\u00bc tsp ground black pepper"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C). Grease a 12-cup muffin tin or line with silicone liners.",
+      "In a blender, combine eggs, cottage cheese, salt, and pepper. Blend until smooth.",
+      "Pour the mixture into a bowl and stir in shredded cheese and chopped vegetables.",
+      "Divide the mixture evenly among the muffin cups.",
+      "Bake for 25 minutes or until the centers are set.",
+      "Let cool for a few minutes before removing from the tin."
+    ],
+    "notes": "Store in the fridge for up to 5 days or freeze for up to 3 months. Reheat in the microwave for a quick breakfast.",
+    "tags": [
+      "breakfast",
+      "high-protein",
+      "gluten-free",
+      "meal prep"
+    ]
+  },
+  {
+    "slug": "tater-tot-sausage-casserole",
+    "title": "Tater Tot Sausage Breakfast Casserole",
+    "description": "A comforting and hearty breakfast bake layered with tater tots, sausage, cheese, and eggs.",
+    "prepTime": "10 minutes",
+    "cookTime": "45 minutes",
+    "totalTime": "55 minutes",
+    "servings": "8 servings",
+    "ingredients": [
+      "1 lb breakfast sausage",
+      "1 (32 oz) bag frozen tater tots",
+      "2 cups shredded cheddar cheese",
+      "8 large eggs",
+      "2 cups milk",
+      "\u00bd tsp salt",
+      "\u00bd tsp ground black pepper"
+    ],
+    "instructions": [
+      "Preheat oven to 350\u00b0F (175\u00b0C). Grease a 9x13-inch baking dish.",
+      "In a skillet over medium heat, cook sausage until browned and crumbled. Drain excess fat.",
+      "Spread tater tots evenly in the prepared baking dish.",
+      "Sprinkle cooked sausage over the tater tots, followed by shredded cheese.",
+      "In a bowl, whisk together eggs, milk, salt, and pepper. Pour over the casserole.",
+      "Bake for 45 minutes or until the eggs are set and the top is golden brown.",
+      "Let stand for 5 minutes before serving."
+    ],
+    "notes": "Can be assembled the night before and baked in the morning. Add vegetables like bell peppers or onions for variation.",
+    "tags": [
+      "breakfast",
+      "casserole",
+      "meal prep",
+      "comfort food"
+    ]
+  },
+  {
+    "slug": "vegetable-frittata",
+    "title": "Vegetable Frittata",
+    "description": "A light and flexible egg dish filled with saut\u00e9ed veggies and optionally topped with cheese.",
+    "prepTime": "10 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "25 minutes",
+    "servings": "4 servings",
+    "ingredients": [
+      "8 large eggs",
+      "\u00bc cup milk",
+      "1 cup chopped vegetables (e.g., zucchini, bell peppers, spinach)",
+      "\u00bd cup shredded cheese (optional)",
+      "1 tbsp olive oil",
+      "Salt and pepper to taste"
+    ],
+    "instructions": [
+      "Preheat oven to 400\u00b0F (200\u00b0C).",
+      "In a bowl, whisk together eggs, milk, salt, and pepper.",
+      "Heat olive oil in an oven-safe skillet over medium heat. Add vegetables and saut\u00e9 until tender.",
+      "Pour the egg mixture over the vegetables. Cook without stirring for 2\u20133 minutes until the edges begin to set.",
+      "Sprinkle cheese on top, if using.",
+      "Transfer the skillet to the oven and bake for 8\u201310 minutes, or until the frittata is fully set.",
+      "Let cool slightly before slicing and serving."
+    ],
+    "notes": "Use any combination of vegetables on hand. Serve warm or at room temperature.",
+    "tags": [
+      "breakfast",
+      "gluten-free",
+      "vegetarian",
+      "eggs"
+    ]
+  },
+  {
+    "title": "Chopped Broccoli & Chickpea Salad",
+    "description": "A refreshing, crunchy salad featuring chopped broccoli, chickpeas, and a creamy lemon-tahini dressing. Perfect for meal prep or a light lunch.",
+    "prepTime": "15 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "15 minutes",
+    "servings": "6",
+    "ingredients": [
+      "4 cups broccoli florets, chopped",
+      "1 (15-ounce) can chickpeas, drained and rinsed",
+      "1 bell pepper, diced",
+      "2 celery stalks, diced",
+      "1/2 small red onion, diced",
+      "1/4 cup slivered almonds",
+      "1/4 cup crumbled goat cheese",
+      "1/4 cup tahini",
+      "2 tablespoons lemon juice",
+      "1 tablespoon olive oil",
+      "1 tablespoon maple syrup",
+      "1 garlic clove, minced",
+      "Salt and pepper, to taste"
+    ],
+    "instructions": [
+      "In a large bowl, combine the chopped broccoli, chickpeas, bell pepper, celery, red onion, slivered almonds, and goat cheese.",
+      "In a small bowl, whisk together the tahini, lemon juice, olive oil, maple syrup, minced garlic, salt, and pepper until smooth.",
+      "Pour the dressing over the salad and toss until everything is evenly coated.",
+      "Serve immediately or refrigerate for later."
+    ],
+    "notes": "This salad is great for meal prep and can be stored in the refrigerator for up to 4 days.",
+    "tags": [
+      "vegetarian",
+      "gluten-free",
+      "meal prep",
+      "salad",
+      "lunch"
+    ],
+    "slug": "chopped-broccoli-chickpea-salad"
+  },
+  {
+    "title": "Healthy Chicken Salad",
+    "description": "A lighter take on the classic chicken salad, made with Greek yogurt, crunchy celery, toasted pecans, and fresh herbs. Ideal for sandwiches or served over greens.",
+    "prepTime": "15 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "15 minutes",
+    "servings": "6",
+    "ingredients": [
+      "3 cups cooked chicken breast, diced",
+      "1/2 cup plain Greek yogurt (2% or higher fat)",
+      "1/4 cup mayonnaise (preferably avocado oil-based)",
+      "1 tablespoon Dijon mustard",
+      "2 teaspoons white wine vinegar",
+      "1/2 cup celery, finely diced",
+      "1/4 cup red onion, finely diced",
+      "1/2 cup pecans, toasted and chopped",
+      "2 tablespoons fresh parsley, chopped",
+      "Salt and pepper, to taste"
+    ],
+    "instructions": [
+      "In a small skillet over medium heat, toast the pecans until fragrant and slightly browned. Let them cool, then chop coarsely.",
+      "In a large bowl, combine the Greek yogurt, mayonnaise, Dijon mustard, and white wine vinegar. Mix until smooth.",
+      "Add the diced chicken, celery, red onion, toasted pecans, and chopped parsley to the bowl. Stir until all ingredients are well combined.",
+      "Season with salt and pepper to taste.",
+      "Refrigerate for at least 2 hours before serving for best flavor."
+    ],
+    "notes": "This chicken salad can be stored in an airtight container in the refrigerator for up to 5 days. It's perfect for sandwiches, wraps, or served over a bed of greens.",
+    "tags": [
+      "high-protein",
+      "gluten-free",
+      "meal prep",
+      "salad",
+      "lunch"
+    ],
+    "slug": "healthy-chicken-salad"
+  },
+  {
+    "title": "Vegetarian Chili",
+    "description": "A hearty and flavorful vegetarian chili made with a variety of beans, vegetables, and spices. Perfect for a comforting meal.",
+    "prepTime": "20 minutes",
+    "cookTime": "40 minutes",
+    "totalTime": "1 hour",
+    "servings": "6",
+    "ingredients": [
+      "2 tablespoons olive oil",
+      "1 medium red onion, chopped",
+      "1 large red bell pepper, chopped",
+      "2 medium carrots, chopped",
+      "2 ribs celery, chopped",
+      "1/2 teaspoon salt",
+      "4 cloves garlic, pressed or minced",
+      "2 tablespoons chili powder",
+      "2 teaspoons ground cumin",
+      "1 1/2 teaspoons smoked paprika",
+      "1 teaspoon dried oregano",
+      "1 large can (28 ounces) diced tomatoes, with their juices",
+      "2 cans (15 ounces each) black beans, rinsed and drained",
+      "1 can (15 ounces) pinto beans, rinsed and drained",
+      "2 cups vegetable broth",
+      "1 bay leaf",
+      "1 tablespoon sherry vinegar or red wine vinegar",
+      "Freshly ground black pepper, to taste"
+    ],
+    "instructions": [
+      "In a large Dutch oven or stockpot, warm the olive oil over medium heat until shimmering.",
+      "Add the chopped onion, bell pepper, carrot, celery, and salt. Stir to combine and cook until the vegetables are tender and the onion is translucent, about 7 to 10 minutes.",
+      "Add the garlic, chili powder, cumin, smoked paprika, and oregano. Cook until fragrant, about 1 minute.",
+      "Pour in the diced tomatoes with their juices, the drained black beans and pinto beans, vegetable broth, and bay leaf. Stir to combine.",
+      "Bring the mixture to a boil, then reduce the heat to a gentle simmer. Cook for 30 minutes, stirring occasionally.",
+      "Remove the chili from heat, discard the bay leaf, and stir in the vinegar. Add salt and pepper to taste.",
+      "For a thicker chili, use an immersion blender to blend a portion of the chili, or mash some of it with a potato masher.",
+      "Serve hot with desired toppings."
+    ],
+    "notes": "This chili tastes even better the next day and freezes well for future meals.",
+    "tags": [
+      "vegetarian",
+      "gluten-free",
+      "dinner",
+      "comfort food"
+    ],
+    "slug": "vegetarian-chili"
+  },
+  {
+    "title": "Lemon Chicken Piccata",
+    "description": "A paleo, Whole30, and keto-friendly version of the classic lemon chicken piccata, made with a creamy lemon sauce and capers.",
+    "prepTime": "15 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "30 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1.5 lbs boneless skinless chicken breasts, pounded to 1/2 inch thickness",
+      "1/2 cup almond flour",
+      "1/4 cup tapioca flour",
+      "1/2 teaspoon sea salt",
+      "1/4 teaspoon black pepper",
+      "2 tablespoons olive oil",
+      "2 tablespoons ghee or clarified butter",
+      "3 cloves garlic, minced",
+      "1/2 cup chicken bone broth",
+      "1/4 cup fresh lemon juice",
+      "1/4 cup coconut cream",
+      "1 tablespoon stone ground mustard (optional)",
+      "1/4 cup capers, drained",
+      "Fresh parsley, chopped (for garnish)"
+    ],
+    "instructions": [
+      "In a shallow bowl, mix almond flour, tapioca flour, salt, and pepper.",
+      "Dredge each chicken breast in the flour mixture, coating both sides.",
+      "Heat olive oil and ghee in a large skillet over medium heat.",
+      "Add chicken to the skillet and cook for 4-5 minutes on each side until golden brown and cooked through. Remove and set aside.",
+      "In the same skillet, add minced garlic and saut\u00e9 for 30 seconds.",
+      "Pour in chicken broth and lemon juice, scraping up any browned bits from the bottom of the pan.",
+      "Stir in coconut cream and mustard (if using), and bring the sauce to a simmer.",
+      "Add capers and return the chicken to the skillet. Simmer for 2-3 minutes to heat through.",
+      "Garnish with chopped parsley and serve."
+    ],
+    "notes": "Serve with saut\u00e9ed cauliflower rice or zucchini noodles for a complete meal.",
+    "tags": [
+      "paleo",
+      "Whole30",
+      "keto",
+      "gluten-free",
+      "dinner"
+    ],
+    "slug": "lemon-chicken-piccata"
+  },
+  {
+    "title": "Sausage & Peppers",
+    "description": "A classic Italian-American dish featuring sausage cooked with colorful bell peppers and onions in a savory tomato sauce.",
+    "prepTime": "10 minutes",
+    "cookTime": "30 minutes",
+    "totalTime": "40 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 tablespoon olive oil",
+      "1 pound Italian sausage links (sweet or hot)",
+      "1 large red bell pepper, sliced",
+      "1 large green bell pepper, sliced",
+      "1 large yellow bell pepper, sliced",
+      "1 medium onion, sliced",
+      "3 cloves garlic, minced",
+      "1/2 teaspoon dried oregano",
+      "1/4 teaspoon red pepper flakes (optional)",
+      "1/2 cup crushed tomatoes",
+      "Salt and pepper, to taste",
+      "Fresh basil or parsley, for garnish"
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add sausage links and cook until browned on all sides, about 5-7 minutes. Remove and set aside.",
+      "In the same skillet, add sliced bell peppers and onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic, oregano, and red pepper flakes (if using). Cook for 1 minute.",
+      "Stir in crushed tomatoes and bring to a simmer.",
+      "Slice the browned sausages into 1-inch pieces and return them to the skillet.",
+      "Cover and simmer for 10-15 minutes until sausages are cooked through.",
+      "Season with salt and pepper to taste.",
+      "Garnish with fresh basil or parsley before serving."
+    ],
+    "notes": "Serve over pasta, rice, or in hoagie rolls for a hearty meal.",
+    "tags": [
+      "Italian",
+      "gluten-free",
+      "dinner",
+      "one-pan"
+    ],
+    "slug": "sausage-peppers"
+  },
+  {
+    "title": "Greek Chickpea Salad",
+    "description": "A refreshing Mediterranean salad combining chickpeas, fresh vegetables, feta cheese, and a tangy vinaigrette.",
+    "prepTime": "15 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "15 minutes",
+    "servings": "6",
+    "ingredients": [
+      "2 cans (15 ounces each) chickpeas, drained and rinsed",
+      "1 cup cherry tomatoes, halved",
+      "1 cucumber, diced",
+      "1/2 red onion, thinly sliced",
+      "1/2 cup Kalamata olives, pitted and halved",
+      "1/2 cup feta cheese, crumbled",
+      "2 tablespoons fresh dill, chopped",
+      "2 tablespoons red wine vinegar",
+      "1/4 cup extra virgin olive oil",
+      "1 teaspoon dried oregano",
+      "Salt and freshly ground black pepper, to taste"
+    ],
+    "instructions": [
+      "In a large bowl, combine chickpeas, cherry tomatoes, cucumber, red onion, olives, feta cheese, and fresh dill.",
+      "In a small bowl, whisk together red wine vinegar, olive oil, dried oregano, salt, and pepper.",
+      "Pour the dressing over the salad and toss gently to combine.",
+      "Let the salad sit for 10 minutes to allow flavors to meld.",
+      "Serve chilled or at room temperature."
+    ],
+    "notes": "This salad can be made ahead and stored in the refrigerator for up to 3 days.",
+    "tags": [
+      "vegetarian",
+      "gluten-free",
+      "Mediterranean",
+      "salad",
+      "lunch"
+    ],
+    "slug": "greek-chickpea-salad"
+  },
+  {
+    "title": "Veggie-Loaded Quinoa Black Bean Casserole",
+    "description": "A hearty, plant-based casserole packed with quinoa, black beans, and a variety of vegetables, all brought together with flavorful spices and topped with melted cheese.",
+    "prepTime": "10 minutes",
+    "cookTime": "40 minutes",
+    "totalTime": "50 minutes",
+    "servings": "6",
+    "ingredients": [
+      "1 cup dry quinoa, rinsed",
+      "1 and 1/4 cups vegetable broth",
+      "1 (10 oz) can diced tomatoes with green chiles",
+      "1 (10 oz) can red enchilada sauce",
+      "1 (15 oz) can black beans, drained and rinsed",
+      "1 cup frozen corn",
+      "1 teaspoon chili powder",
+      "1/2 teaspoon cumin",
+      "1/2 teaspoon garlic powder",
+      "1/2 teaspoon onion powder",
+      "1/2 teaspoon salt",
+      "1 and 1/2 cups shredded Mexican blend cheese",
+      "Optional toppings: avocado, cilantro, salsa"
+    ],
+    "instructions": [
+      "Preheat the oven to 375\u00b0F (190\u00b0C). Lightly grease a 9x13-inch baking dish.",
+      "In a large bowl, combine the rinsed quinoa, vegetable broth, diced tomatoes with green chiles, enchilada sauce, black beans, corn, chili powder, cumin, garlic powder, onion powder, and salt. Mix well.",
+      "Pour the mixture into the prepared baking dish and cover tightly with aluminum foil.",
+      "Bake for 30 minutes. Remove the foil, stir the casserole, and return to the oven uncovered for an additional 15 minutes, or until the quinoa is fully cooked and the liquid is absorbed.",
+      "Sprinkle the shredded cheese evenly over the top and bake for another 5 minutes, or until the cheese is melted and bubbly.",
+      "Let the casserole cool for 5 minutes before serving. Top with avocado, cilantro, and salsa if desired."
+    ],
+    "notes": "This casserole is versatile and can be customized with additional vegetables or protein sources. It's also freezer-friendly; cool completely before freezing in an airtight container.",
+    "tags": [
+      "vegetarian",
+      "gluten-free",
+      "meal prep",
+      "casserole",
+      "dinner"
+    ],
+    "slug": "veggie-loaded-quinoa-black-bean-casserole"
+  },
+  {
+    "title": "Lemon Herb Grilled Chicken",
+    "description": "Tender grilled chicken marinated in a zesty lemon and herb mixture, perfect for a flavorful and healthy dinner.",
+    "prepTime": "10 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "25 minutes",
+    "servings": "4",
+    "ingredients": [
+      "4 boneless, skinless chicken breasts",
+      "1/4 cup olive oil",
+      "1/4 cup lemon juice",
+      "1 teaspoon dried basil",
+      "1 teaspoon dried parsley",
+      "1/2 teaspoon salt",
+      "1/2 teaspoon black pepper",
+      "1/2 teaspoon garlic powder",
+      "1/2 teaspoon onion powder",
+      "1/4 teaspoon crushed red pepper flakes"
+    ],
+    "instructions": [
+      "In a small bowl, whisk together olive oil, lemon juice, dried basil, dried parsley, salt, black pepper, garlic powder, onion powder, and crushed red pepper flakes.",
+      "Place chicken breasts in a resealable plastic bag or shallow dish and pour marinade over them. Seal or cover and refrigerate for at least 1 hour, up to 12 hours.",
+      "Preheat grill to medium heat. Remove chicken from marinade and discard marinade.",
+      "Grill chicken for 5-7 minutes per side, or until internal temperature reaches 165\u00b0F (74\u00b0C) and juices run clear.",
+      "Remove from grill and let rest for 5 minutes before serving."
+    ],
+    "notes": "For best flavor, marinate the chicken overnight. This recipe is versatile and pairs well with a variety of side dishes.",
+    "tags": [
+      "gluten-free",
+      "paleo",
+      "whole30",
+      "grilled",
+      "chicken",
+      "dinner"
+    ],
+    "slug": "lemon-herb-grilled-chicken"
+  },
+  {
+    "title": "Grilled Veggie Skewers",
+    "description": "Colorful and flavorful grilled vegetable skewers, perfect as a side dish or a light main course during summer cookouts.",
+    "prepTime": "20 minutes",
+    "cookTime": "10 minutes",
+    "totalTime": "30 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 zucchini, sliced into 1/2-inch rounds",
+      "1 yellow squash, sliced into 1/2-inch rounds",
+      "1 red bell pepper, cut into 1-inch pieces",
+      "1 yellow bell pepper, cut into 1-inch pieces",
+      "1 red onion, cut into wedges",
+      "8 ounces cremini mushrooms, stems trimmed",
+      "2 tablespoons olive oil",
+      "2 tablespoons balsamic vinegar",
+      "2 garlic cloves, minced",
+      "1 teaspoon dried oregano",
+      "Salt and freshly ground black pepper, to taste",
+      "Wooden or metal skewers"
+    ],
+    "instructions": [
+      "If using wooden skewers, soak them in water for at least 30 minutes to prevent burning.",
+      "In a large bowl, whisk together olive oil, balsamic vinegar, minced garlic, dried oregano, salt, and pepper.",
+      "Add the prepared vegetables to the bowl and toss to coat evenly with the marinade. Let sit for 15 minutes.",
+      "Preheat the grill to medium-high heat.",
+      "Thread the marinated vegetables onto the skewers, alternating types for a colorful presentation.",
+      "Place the skewers on the grill and cook for 10-12 minutes, turning occasionally, until the vegetables are tender and lightly charred.",
+      "Remove from the grill and serve warm."
+    ],
+    "notes": "Feel free to customize with your favorite vegetables or add tofu for extra protein. These skewers pair well with grilled meats or can be served over rice or quinoa for a complete meal.",
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "gluten-free",
+      "grilling",
+      "summer",
+      "side dish"
+    ],
+    "slug": "grilled-veggie-skewers"
+  },
+  {
+    "title": "Garlic Parmesan Kale Pasta",
+    "description": "A simple and flavorful pasta dish featuring tender kale saut\u00e9ed with garlic, tossed with angel hair pasta, and finished with Parmesan cheese.",
+    "prepTime": "10 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "25 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 bunch (1/2 lb) kale",
+      "1/2 lb angel hair pasta",
+      "2 tablespoons olive oil",
+      "2 tablespoons butter",
+      "2 cloves garlic, minced",
+      "1/4 cup grated Parmesan",
+      "Salt and pepper, to taste",
+      "Pinch of red pepper flakes (optional)"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Add the pasta and cook according to package instructions. Drain and set aside.",
+      "While the pasta is cooking, remove the stems from the kale and tear the leaves into bite-sized pieces.",
+      "In a large skillet, heat the olive oil and butter over medium heat. Add the minced garlic and saut\u00e9 for about 1 minute, until fragrant.",
+      "Add the kale to the skillet and cook until wilted, about 5 minutes.",
+      "Add the cooked pasta to the skillet with the kale. Toss to combine.",
+      "Remove from heat and stir in the grated Parmesan. Season with salt, pepper, and red pepper flakes, if using.",
+      "Serve warm."
+    ],
+    "notes": "For added protein, consider topping with grilled chicken or a poached egg. Whole wheat pasta can be used for a nuttier flavor.",
+    "tags": [
+      "vegetarian",
+      "quick",
+      "easy",
+      "pasta",
+      "dinner"
+    ],
+    "slug": "garlic-parmesan-kale-pasta"
+  },
+  {
+    "title": "The Best Easy Healthy Lasagna",
+    "description": "A lighter version of the classic lasagna, made with lean ground beef, fresh vegetables, and a creamy cottage cheese filling.",
+    "prepTime": "30 minutes",
+    "cookTime": "45 minutes",
+    "totalTime": "1 hour 15 minutes",
+    "servings": "8",
+    "ingredients": [
+      "1 lb lean ground beef",
+      "1 small onion, diced",
+      "1 zucchini, diced",
+      "1 summer squash, diced",
+      "1 (15 oz) can whole tomatoes",
+      "1 (15 oz) can tomato sauce",
+      "1 teaspoon dried basil",
+      "1 teaspoon dried oregano",
+      "1/2 teaspoon garlic powder",
+      "Salt and pepper, to taste",
+      "2 cups cottage cheese",
+      "1/2 cup grated Parmesan cheese",
+      "1 cup shredded mozzarella cheese",
+      "9 oven-ready lasagna noodles"
+    ],
+    "instructions": [
+      "Preheat oven to 375\u00b0F (190\u00b0C).",
+      "In a large skillet, cook the ground beef and diced onion over medium heat until the beef is browned. Drain excess fat.",
+      "Add the diced zucchini and summer squash to the skillet and cook until softened.",
+      "Stir in the whole tomatoes (crushed by hand), tomato sauce, basil, oregano, garlic powder, salt, and pepper. Simmer for 10 minutes.",
+      "In a bowl, mix together the cottage cheese and grated Parmesan cheese.",
+      "In a 9x13-inch baking dish, spread a layer of meat sauce, followed by a layer of lasagna noodles, then a layer of the cottage cheese mixture. Repeat layers, ending with meat sauce on top.",
+      "Sprinkle the shredded mozzarella cheese over the top.",
+      "Cover with foil and bake for 30 minutes. Remove foil and bake an additional 15 minutes, until cheese is bubbly and golden.",
+      "Let stand for 10 minutes before serving."
+    ],
+    "notes": "This lasagna can be assembled ahead of time and refrigerated until ready to bake. Leftovers freeze well for future meals.",
+    "tags": [
+      "healthy",
+      "high-protein",
+      "meal prep",
+      "comfort food",
+      "dinner"
+    ],
+    "slug": "the-best-easy-healthy-lasagna"
+  },
+  {
+    "title": "Spicy Tuna Poke Bowl",
+    "description": "A fresh and flavorful bowl featuring sushi-grade tuna, creamy avocado, crisp cucumbers, and a spicy mayo sauce over steamed rice.",
+    "prepTime": "10 minutes",
+    "cookTime": "5 minutes",
+    "totalTime": "15 minutes",
+    "servings": "2",
+    "ingredients": [
+      "8 oz sushi-grade tuna, diced",
+      "1 tablespoon low-sodium soy sauce",
+      "1 teaspoon sesame oil",
+      "1/2 teaspoon sriracha sauce",
+      "1/4 cup mayonnaise",
+      "1 teaspoon sriracha sauce (for spicy mayo)",
+      "1 cup cooked brown rice",
+      "1/2 avocado, sliced",
+      "1/2 cup cucumber, diced",
+      "2 tablespoons scallions, sliced",
+      "1 teaspoon sesame seeds"
+    ],
+    "instructions": [
+      "In a bowl, combine diced tuna, soy sauce, sesame oil, and 1/2 teaspoon sriracha. Mix gently and set aside.",
+      "In a separate bowl, mix mayonnaise and 1 teaspoon sriracha to make the spicy mayo.",
+      "Divide the cooked brown rice between two bowls.",
+      "Top each bowl with the marinated tuna, sliced avocado, diced cucumber, and scallions.",
+      "Drizzle with spicy mayo and sprinkle with sesame seeds.",
+      "Serve immediately."
+    ],
+    "notes": "Feel free to customize with additional toppings like seaweed salad, pickled ginger, or edamame. For a low-carb option, substitute rice with cauliflower rice.",
+    "tags": [
+      "gluten-free",
+      "high-protein",
+      "quick",
+      "seafood",
+      "dinner"
+    ],
+    "slug": "spicy-tuna-poke-bowl"
+  },
+  {
+    "title": "Easiest Shredded Chicken",
+    "description": "A simple and versatile shredded chicken recipe that's perfect for meal prep and can be used in a variety of dishes.",
+    "prepTime": "5 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "20 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 pound boneless, skinless chicken breasts",
+      "1 tablespoon olive oil",
+      "1/2 cup chicken broth",
+      "Salt and pepper, to taste"
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium heat.",
+      "Season chicken breasts with salt and pepper and place in the skillet.",
+      "Add chicken broth to the skillet, cover, and cook for 10-15 minutes until chicken is cooked through.",
+      "Remove chicken from skillet and let rest for 5 minutes.",
+      "Shred chicken using two forks or a hand mixer.",
+      "Use immediately or store in an airtight container in the refrigerator for up to 4 days."
+    ],
+    "notes": "This shredded chicken is great for tacos, salads, sandwiches, and more. It can also be frozen for up to 3 months.",
+    "tags": [
+      "meal prep",
+      "gluten-free",
+      "protein",
+      "versatile"
+    ],
+    "slug": "easiest-shredded-chicken"
+  },
+  {
+    "title": "Japchae (Korean Glass Noodle Stir-Fry)",
+    "description": "A traditional Korean dish made with sweet potato glass noodles stir-fried with a variety of vegetables and beef in a savory-sweet sauce.",
+    "prepTime": "30 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "50 minutes",
+    "servings": "4",
+    "ingredients": [
+      "4 ounces sweet potato starch noodles (dangmyeon)",
+      "4 ounces beef (filet mignon or pork shoulder), cut into strips",
+      "2 large dried shiitake mushrooms, soaked and sliced",
+      "1 small carrot, julienned",
+      "1/2 onion, thinly sliced",
+      "1/2 red bell pepper, thinly sliced",
+      "1/2 yellow bell pepper, thinly sliced",
+      "2 cups spinach",
+      "2 teaspoons soy sauce",
+      "1 teaspoon sugar",
+      "1 teaspoon sesame oil",
+      "1 clove garlic, minced",
+      "Salt and pepper, to taste",
+      "1 tablespoon vegetable oil",
+      "1 teaspoon sesame seeds"
+    ],
+    "instructions": [
+      "Cook sweet potato noodles according to package instructions. Drain and rinse under cold water. Toss with a little sesame oil to prevent sticking.",
+      "In a bowl, marinate beef and shiitake mushrooms with soy sauce, sugar, sesame oil, minced garlic, salt, and pepper. Let sit for 10 minutes.",
+      "In a large skillet or wok, heat vegetable oil over medium-high heat. Add marinated beef and mushrooms, and stir-fry until cooked through. Remove and set aside.",
+      "In the same skillet, stir-fry carrots, onions, and bell peppers until tender. Add spinach and cook until wilted.",
+      "Add cooked noodles and beef mixture back into the skillet with vegetables. Toss everything together until well combined and heated through.",
+      "Sprinkle with sesame seeds before serving."
+    ],
+    "notes": "Japchae can be enjoyed warm or at room temperature. It's a popular dish for Korean celebrations and gatherings.",
+    "tags": [
+      "Korean",
+      "noodles",
+      "stir-fry",
+      "beef",
+      "vegetarian option"
+    ],
+    "slug": "japchae-korean-glass-noodle-stir-fry"
+  },
+  {
+    "title": "Spicy Italian Sausage Pasta",
+    "description": "A creamy tomato-based pasta dish featuring spicy Italian sausage, garlic, and fresh basil, perfect for a quick and flavorful weeknight dinner.",
+    "prepTime": "10 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "30 minutes",
+    "servings": "4",
+    "ingredients": [
+      "8 oz penne pasta",
+      "1 lb spicy Italian sausage, casings removed",
+      "3 cloves garlic, minced",
+      "1/2 cup chicken broth",
+      "1 tablespoon all-purpose flour",
+      "1 (14.5 oz) can diced tomatoes",
+      "1/2 cup heavy cream",
+      "1/4 cup grated Parmesan cheese",
+      "1/4 cup fresh basil, chopped",
+      "Salt and freshly ground black pepper, to taste"
+    ],
+    "instructions": [
+      "Cook the penne pasta according to package instructions until al dente. Drain and set aside.",
+      "In a large skillet over medium heat, cook the sausage until browned and cooked through. Remove from skillet and set aside.",
+      "In the same skillet, add minced garlic and cook until fragrant, about 1 minute.",
+      "Sprinkle flour over the garlic and stir to combine.",
+      "Gradually whisk in chicken broth, scraping up any browned bits from the bottom of the skillet.",
+      "Add diced tomatoes and heavy cream, stirring to combine.",
+      "Return the cooked sausage to the skillet and simmer the sauce for 5-7 minutes, until slightly thickened.",
+      "Stir in grated Parmesan cheese and chopped basil. Season with salt and pepper to taste.",
+      "Add the cooked penne pasta to the sauce and toss to coat evenly.",
+      "Serve hot, garnished with additional Parmesan and basil if desired."
+    ],
+    "notes": "For a milder version, use sweet Italian sausage instead of spicy. This dish pairs well with a simple green salad and crusty bread.",
+    "tags": [
+      "pasta",
+      "Italian",
+      "spicy",
+      "quick",
+      "dinner"
+    ],
+    "slug": "spicy-italian-sausage-pasta"
+  },
+  {
+    "title": "Vegetable Soup",
+    "description": "A hearty and nourishing vegetable soup packed with a variety of fresh veggies and herbs, perfect for a cozy meal.",
+    "prepTime": "10 minutes",
+    "cookTime": "30 minutes",
+    "totalTime": "40 minutes",
+    "servings": "6",
+    "ingredients": [
+      "2 tablespoons extra-virgin olive oil",
+      "1 medium yellow onion, diced",
+      "1 teaspoon sea salt, more to taste",
+      "1 medium carrot, diced",
+      "1 small sweet potato, diced",
+      "1 (14.5 oz) can fire-roasted diced tomatoes",
+      "4 garlic cloves, chopped",
+      "2 teaspoons dried oregano",
+      "1/4 teaspoon red pepper flakes",
+      "4 cups vegetable broth",
+      "2 bay leaves",
+      "1 cup halved cherry tomatoes",
+      "1 cup chopped green beans",
+      "1 zucchini, diced",
+      "1 cup chopped kale",
+      "1 (15 oz) can chickpeas, drained and rinsed",
+      "1 tablespoon red wine vinegar",
+      "Freshly ground black pepper, to taste"
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion and salt, and saut\u00e9 until translucent, about 5 minutes.",
+      "Add diced carrot and sweet potato, and cook for another 5 minutes.",
+      "Stir in fire-roasted diced tomatoes, chopped garlic, dried oregano, and red pepper flakes. Cook for 2 minutes.",
+      "Pour in vegetable broth and add bay leaves. Bring to a boil, then reduce heat and simmer for 10 minutes.",
+      "Add halved cherry tomatoes, chopped green beans, and diced zucchini. Simmer for another 10 minutes.",
+      "Stir in chopped kale and chickpeas, and cook until kale is wilted, about 5 minutes.",
+      "Remove bay leaves and stir in red wine vinegar. Season with additional salt and freshly ground black pepper to taste.",
+      "Serve hot, garnished with fresh herbs if desired."
+    ],
+    "notes": "This soup is versatile; feel free to use any vegetables you have on hand. It stores well and tastes even better the next day.",
+    "tags": [
+      "vegan",
+      "gluten-free",
+      "healthy",
+      "soup",
+      "meal prep"
+    ],
+    "slug": "vegetable-soup"
+  },
+  {
+    "title": "Lemon Garlic Parmesan Shrimp Pasta",
+    "description": "A quick and flavorful pasta dish featuring succulent shrimp in a buttery lemon garlic sauce, tossed with Parmesan cheese and linguine.",
+    "prepTime": "5 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "25 minutes",
+    "servings": "6",
+    "ingredients": [
+      "8 ounces linguine pasta",
+      "2 tablespoons olive oil",
+      "6 tablespoons unsalted butter",
+      "3 cloves garlic, minced",
+      "1/4 teaspoon red pepper flakes",
+      "1 1/4 pounds large shrimp, peeled and deveined",
+      "Salt and freshly ground black pepper, to taste",
+      "1 teaspoon Italian seasoning",
+      "4 cups baby spinach",
+      "1/2 cup grated Parmesan cheese",
+      "1 tablespoon fresh lemon juice",
+      "2 tablespoons chopped fresh parsley"
+    ],
+    "instructions": [
+      "Cook linguine pasta according to package instructions until al dente. Drain and set aside.",
+      "In a large skillet over medium heat, heat olive oil and 2 tablespoons of butter.",
+      "Add minced garlic and red pepper flakes, and saut\u00e9 until fragrant, about 1 minute.",
+      "Add shrimp to the skillet, season with salt, pepper, and Italian seasoning. Cook until shrimp are pink and opaque, about 2-3 minutes per side.",
+      "Add baby spinach to the skillet and cook until wilted.",
+      "Stir in the remaining 4 tablespoons of butter, grated Parmesan cheese, and lemon juice. Cook until the butter is melted and the sauce is well combined.",
+      "Add cooked linguine to the skillet and toss to coat with the sauce.",
+      "Garnish with chopped fresh parsley and serve immediately."
+    ],
+    "notes": "For a lighter version, substitute half of the butter with additional olive oil. Adjust red pepper flakes to your preferred spice level.",
+    "tags": [
+      "seafood",
+      "pasta",
+      "quick",
+      "dinner",
+      "one-pot"
+    ],
+    "slug": "lemon-garlic-parmesan-shrimp-pasta"
+  },
+  {
+    "title": "Baked Ziti with Sausage",
+    "description": "A comforting baked pasta dish featuring ziti noodles, flavorful Italian sausage, and a rich tomato cream sauce, topped with melted mozzarella and Pecorino Romano cheeses.",
+    "prepTime": "20 minutes",
+    "cookTime": "30 minutes",
+    "totalTime": "50 minutes",
+    "servings": "8",
+    "ingredients": [
+      "1 pound ziti noodles",
+      "1 1/2 pounds ground spicy or sweet Italian sausage",
+      "4 cloves garlic, minced",
+      "1 (28-ounce) can crushed tomatoes",
+      "1 teaspoon salt",
+      "1 1/2 teaspoons sugar",
+      "1/4 teaspoon crushed red pepper flakes",
+      "1 cup heavy cream",
+      "1/3 cup chopped fresh basil",
+      "1/3 cup grated Pecorino Romano cheese",
+      "8 ounces whole milk mozzarella cheese, shredded"
+    ],
+    "instructions": [
+      "Preheat oven to 425\u00b0F (220\u00b0C).",
+      "Cook ziti noodles in a large pot of salted boiling water until al dente. Drain and set aside.",
+      "In a large skillet over medium heat, cook the Italian sausage until browned. Add minced garlic and cook for 1 minute.",
+      "Stir in crushed tomatoes, salt, sugar, and red pepper flakes. Simmer for 10 minutes.",
+      "Add heavy cream and chopped basil to the sauce. Simmer for an additional 5 minutes.",
+      "In a large bowl, combine cooked ziti noodles, sausage sauce, and grated Pecorino Romano cheese. Mix well.",
+      "Transfer the mixture to a 9x13-inch baking dish. Sprinkle shredded mozzarella cheese evenly over the top.",
+      "Bake for 15-20 minutes, or until the cheese is melted and bubbly.",
+      "Let the baked ziti rest for 5 minutes before serving."
+    ],
+    "notes": "This dish can be assembled ahead of time and refrigerated until ready to bake. Leftovers can be stored in the refrigerator for up to 3 days.",
+    "tags": [
+      "pasta",
+      "Italian",
+      "comfort food",
+      "baked",
+      "dinner"
+    ],
+    "slug": "baked-ziti-with-sausage"
+  },
+  {
+    "title": "Asian Chicken Lettuce Wraps",
+    "description": "A quick and healthy dinner featuring ground chicken, water chestnuts, and a flavorful sauce, all wrapped in crisp lettuce leaves.",
+    "prepTime": "15 minutes",
+    "cookTime": "10 minutes",
+    "totalTime": "25 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 tablespoon peanut oil",
+      "1 pound ground chicken",
+      "1 small onion, diced",
+      "2 cloves garlic, minced",
+      "1 tablespoon soy sauce",
+      "1/4 cup hoisin sauce",
+      "1 tablespoon rice vinegar",
+      "1 tablespoon sesame oil",
+      "1 teaspoon grated fresh ginger",
+      "1 (8-ounce) can water chestnuts, drained and chopped",
+      "2 green onions, thinly sliced",
+      "Salt and pepper, to taste",
+      "1 head butter lettuce, leaves separated"
+    ],
+    "instructions": [
+      "Heat peanut oil in a large skillet over medium-high heat.",
+      "Add ground chicken and cook until browned, about 3-5 minutes, making sure to crumble the chicken as it cooks; drain excess fat.",
+      "Stir in onion, garlic, soy sauce, hoisin sauce, rice vinegar, sesame oil, and ginger until onions have become translucent, about 1-2 minutes.",
+      "Stir in water chestnuts and green onions until tender, about 1-2 minutes; season with salt and pepper, to taste.",
+      "To serve, spoon several tablespoons of the chicken mixture into the center of a lettuce leaf, taco-style."
+    ],
+    "notes": "For a spicier version, add a dash of sriracha or red pepper flakes to the sauce.",
+    "tags": [
+      "gluten-free",
+      "dairy-free",
+      "quick",
+      "healthy",
+      "dinner"
+    ],
+    "slug": "asian-chicken-lettuce-wraps"
+  },
+  {
+    "title": "Mexican Stuffed Sweet Potatoes",
+    "description": "A hearty vegan dish featuring baked sweet potatoes stuffed with a flavorful black bean and corn mixture, topped with guacamole and vegan sour cream.",
+    "prepTime": "15 minutes",
+    "cookTime": "40 minutes",
+    "totalTime": "55 minutes",
+    "servings": "4",
+    "ingredients": [
+      "4 medium sweet potatoes",
+      "1 (15-ounce) can black beans, drained and rinsed",
+      "1 cup corn kernels",
+      "1 cup cherry tomatoes, halved",
+      "1/4 cup red onion, finely chopped",
+      "2 cloves garlic, minced",
+      "1/4 cup fresh cilantro, chopped",
+      "Juice of 1 lime",
+      "Salt and pepper, to taste",
+      "1 avocado, mashed",
+      "1/4 cup vegan sour cream"
+    ],
+    "instructions": [
+      "Preheat oven to 400\u00b0F (200\u00b0C).",
+      "Pierce sweet potatoes with a fork and bake for 40 minutes, or until tender.",
+      "In a bowl, combine black beans, corn, cherry tomatoes, red onion, garlic, cilantro, lime juice, salt, and pepper.",
+      "Once sweet potatoes are cooked, slice them open and fluff the insides with a fork.",
+      "Stuff each sweet potato with the black bean mixture.",
+      "Top with mashed avocado and a drizzle of vegan sour cream."
+    ],
+    "notes": "Customize with your favorite toppings like jalape\u00f1os, hot sauce, or shredded vegan cheese.",
+    "tags": [
+      "vegan",
+      "gluten-free",
+      "healthy",
+      "dinner"
+    ],
+    "slug": "mexican-stuffed-sweet-potatoes"
+  },
+  {
+    "title": "Cheesy Chicken Spaghetti Squash Casserole",
+    "description": "A low-carb, high-protein casserole featuring spaghetti squash, shredded chicken, and a creamy cheese sauce.",
+    "prepTime": "15 minutes",
+    "cookTime": "45 minutes",
+    "totalTime": "1 hour",
+    "servings": "6",
+    "ingredients": [
+      "1 medium spaghetti squash",
+      "2 cups cooked, shredded chicken",
+      "1 cup diced green bell pepper",
+      "1/2 cup diced tomatoes",
+      "1 cup cream of mushroom soup",
+      "1/2 cup plain Greek yogurt",
+      "1 teaspoon minced garlic",
+      "1 1/2 cups shredded cheese (divided)",
+      "Salt and pepper, to taste",
+      "Fresh basil or chives, for garnish"
+    ],
+    "instructions": [
+      "Preheat oven to 375\u00b0F (190\u00b0C).",
+      "Cut spaghetti squash in half lengthwise and remove seeds. Place cut-side down on a baking sheet and bake for 30-40 minutes, until tender.",
+      "Once cooked, use a fork to scrape out the strands of spaghetti squash.",
+      "In a large bowl, combine spaghetti squash strands, shredded chicken, bell pepper, tomatoes, cream of mushroom soup, Greek yogurt, minced garlic, 1 cup shredded cheese, salt, and pepper.",
+      "Transfer mixture to a greased 9x13-inch baking dish. Top with remaining 1/2 cup cheese.",
+      "Bake for 15-20 minutes, until cheese is melted and bubbly.",
+      "Garnish with fresh basil or chives before serving."
+    ],
+    "notes": "This casserole can be prepared ahead of time and frozen for later use.",
+    "tags": [
+      "gluten-free",
+      "low-carb",
+      "high-protein",
+      "meal prep",
+      "dinner"
+    ],
+    "slug": "cheesy-chicken-spaghetti-squash-casserole"
+  },
+  {
+    "title": "Korean Salmon Rice Bowl",
+    "description": "A flavorful bowl featuring gochujang-glazed salmon served over rice with a variety of fresh vegetables.",
+    "prepTime": "10 minutes",
+    "cookTime": "10 minutes",
+    "totalTime": "20 minutes",
+    "servings": "4",
+    "ingredients": [
+      "4 salmon fillets (6 ounces each)",
+      "2 tablespoons gochujang (Korean chili paste)",
+      "1 tablespoon soy sauce",
+      "1 tablespoon honey",
+      "1 teaspoon sesame oil",
+      "2 cups cooked white or brown rice",
+      "1 cup cucumber, sliced",
+      "1 cup shredded carrots",
+      "1/2 cup kimchi",
+      "2 green onions, sliced",
+      "1 tablespoon sesame seeds"
+    ],
+    "instructions": [
+      "Preheat oven to 400\u00b0F (200\u00b0C) or set air fryer to 400\u00b0F (200\u00b0C).",
+      "In a small bowl, mix gochujang, soy sauce, honey, and sesame oil.",
+      "Brush the mixture over the salmon fillets.",
+      "Bake or air fry salmon for 10 minutes, until cooked through.",
+      "Divide cooked rice among four bowls. Top with salmon, cucumber, carrots, kimchi, green onions, and sesame seeds.",
+      "Serve immediately."
+    ],
+    "notes": "Adjust the amount of gochujang to control the spice level. For a gluten-free version, use tamari instead of soy sauce.",
+    "tags": [
+      "gluten-free",
+      "high-protein",
+      "quick",
+      "healthy",
+      "dinner"
+    ],
+    "slug": "korean-salmon-rice-bowl"
+  },
+  {
+    "title": "Easy Healthy Taco Soup",
+    "description": "A hearty and flavorful soup combining lean ground turkey, black beans, corn, and crushed tomatoes, seasoned with taco spices. Quick to prepare and perfect for a nutritious meal.",
+    "prepTime": "10 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "30 minutes",
+    "servings": "11",
+    "ingredients": [
+      "1 lb lean ground turkey",
+      "1 (15 oz) can black beans, drained and rinsed",
+      "1 (15 oz) can corn, drained",
+      "1 (15 oz) can crushed tomatoes",
+      "1 (4 oz) can diced green chilies",
+      "1 packet taco seasoning",
+      "1 cup chopped onion",
+      "2 cloves garlic, minced",
+      "4 cups low-sodium chicken broth",
+      "Salt and pepper, to taste",
+      "Optional toppings: sliced avocado, fresh cilantro, shredded cheese, sour cream"
+    ],
+    "instructions": [
+      "In a large pot over medium heat, cook ground turkey until browned. Drain any excess fat.",
+      "Add chopped onion and minced garlic to the pot. Saut\u00e9 until the onion is translucent.",
+      "Stir in black beans, corn, crushed tomatoes, diced green chilies, taco seasoning, and chicken broth.",
+      "Bring the mixture to a boil, then reduce heat and simmer for 15-20 minutes.",
+      "Season with salt and pepper to taste.",
+      "Serve hot, topped with your choice of avocado, cilantro, cheese, or sour cream."
+    ],
+    "notes": "This soup is freezer-friendly and can be stored in airtight containers for up to 3 months.",
+    "tags": [
+      "gluten-free",
+      "high-protein",
+      "one-pot",
+      "meal prep",
+      "dinner"
+    ],
+    "slug": "easy-healthy-taco-soup"
+  },
+  {
+    "title": "Easy White Chicken Chili",
+    "description": "A creamy and flavorful chili made with shredded chicken, white beans, and green chilies. Quick to prepare with just five ingredients.",
+    "prepTime": "5 minutes",
+    "cookTime": "10 minutes",
+    "totalTime": "15 minutes",
+    "servings": "4",
+    "ingredients": [
+      "2 cups cooked shredded chicken",
+      "2 (15 oz) cans white beans, drained and rinsed",
+      "1 (4 oz) can diced green chilies",
+      "2 cups chicken broth",
+      "1 teaspoon ground cumin",
+      "Salt and pepper, to taste",
+      "Optional toppings: shredded cheese, sour cream, chopped cilantro"
+    ],
+    "instructions": [
+      "In a large pot, combine shredded chicken, white beans, diced green chilies, chicken broth, and ground cumin.",
+      "Bring to a boil over medium-high heat.",
+      "Reduce heat and simmer for 10 minutes.",
+      "Season with salt and pepper to taste.",
+      "Serve hot, garnished with your choice of toppings."
+    ],
+    "notes": "This chili can be made ahead and stored in the refrigerator for up to 3 days.",
+    "tags": [
+      "gluten-free",
+      "quick",
+      "one-pot",
+      "dinner"
+    ],
+    "slug": "easy-white-chicken-chili"
+  },
+  {
+    "title": "Spicy Pork Noodles",
+    "description": "A quick and spicy noodle dish featuring ground pork, garlic, ginger, and a savory sauce. Perfect for a flavorful weeknight dinner.",
+    "prepTime": "10 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "25 minutes",
+    "servings": "4",
+    "ingredients": [
+      "8 oz rice noodles",
+      "1 tablespoon sesame oil",
+      "1 pound ground pork",
+      "3 cloves garlic, minced",
+      "1 tablespoon fresh ginger, grated",
+      "1/4 cup soy sauce",
+      "2 tablespoons hoisin sauce",
+      "1 tablespoon sriracha",
+      "1 tablespoon rice vinegar",
+      "2 green onions, sliced",
+      "1 tablespoon sesame seeds",
+      "Fresh cilantro, for garnish"
+    ],
+    "instructions": [
+      "Cook rice noodles according to package instructions. Drain and set aside.",
+      "In a large skillet, heat sesame oil over medium heat. Add ground pork and cook until browned.",
+      "Add minced garlic and grated ginger; cook for 2 minutes.",
+      "In a small bowl, mix soy sauce, hoisin sauce, sriracha, and rice vinegar.",
+      "Pour the sauce into the skillet with the pork and stir to combine.",
+      "Add cooked noodles to the skillet and toss to coat with the sauce.",
+      "Cook for an additional 2-3 minutes until heated through.",
+      "Garnish with sliced green onions, sesame seeds, and fresh cilantro before serving."
+    ],
+    "notes": "Adjust the level of spiciness by varying the amount of sriracha to your taste.",
+    "tags": [
+      "spicy",
+      "quick",
+      "noodles",
+      "dinner"
+    ],
+    "slug": "spicy-pork-noodles"
+  },
+  {
+    "title": "Lentil Curry",
+    "description": "A rich and creamy lentil curry made with coconut milk and aromatic spices. A hearty and satisfying vegan meal.",
+    "prepTime": "5 minutes",
+    "cookTime": "55 minutes",
+    "totalTime": "1 hour",
+    "servings": "6",
+    "ingredients": [
+      "1 tablespoon oil",
+      "1 onion, diced",
+      "2 garlic cloves, minced",
+      "1 tablespoon ginger, grated",
+      "1 tablespoon curry powder",
+      "1 teaspoon turmeric",
+      "1 teaspoon cumin",
+      "1/2 teaspoon chili powder",
+      "1 cup dried red lentils",
+      "1 (14 oz) can diced tomatoes",
+      "1 (14 oz) can coconut milk",
+      "2 cups vegetable broth",
+      "Salt and pepper, to taste",
+      "Fresh cilantro, for garnish"
+    ],
+    "instructions": [
+      "In a large pot, heat oil over medium heat. Add diced onion and saut\u00e9 until translucent.",
+      "Add minced garlic and grated ginger; cook for 2 minutes.",
+      "Stir in curry powder, turmeric, cumin, and chili powder; cook for 1 minute.",
+      "Add red lentils, diced tomatoes, coconut milk, and vegetable broth. Stir to combine.",
+      "Bring to a boil, then reduce heat and simmer for 45-50 minutes, stirring occasionally, until lentils are tender.",
+      "Season with salt and pepper to taste.",
+      "Garnish with fresh cilantro before serving."
+    ],
+    "notes": "Serve over rice or with naan bread for a complete meal. Leftovers can be stored in the refrigerator for up to 4 days.",
+    "tags": [
+      "vegan",
+      "gluten-free",
+      "one-pot",
+      "dinner"
+    ],
+    "slug": "lentil-curry"
+  },
+  {
+    "title": "Chicken Pot Pie Casserole",
+    "description": "A comforting casserole featuring tender chicken and mixed vegetables in a creamy sauce, topped with golden, flaky biscuits.",
+    "prepTime": "15 minutes",
+    "cookTime": "30 minutes",
+    "totalTime": "45 minutes",
+    "servings": "6",
+    "ingredients": [
+      "3 cups cooked, shredded chicken",
+      "1 (10.5 oz) can cream of chicken soup",
+      "1 cup milk",
+      "2 cups frozen mixed vegetables (peas, carrots, corn)",
+      "1/2 teaspoon garlic powder",
+      "1/2 teaspoon onion powder",
+      "Salt and pepper to taste",
+      "1 can refrigerated biscuit dough"
+    ],
+    "instructions": [
+      "Preheat oven to 375\u00b0F (190\u00b0C).",
+      "In a large bowl, combine shredded chicken, cream of chicken soup, milk, mixed vegetables, garlic powder, onion powder, salt, and pepper.",
+      "Pour the mixture into a greased 9x13-inch baking dish.",
+      "Place biscuit dough pieces evenly over the top of the chicken mixture.",
+      "Bake for 25-30 minutes, or until the biscuits are golden brown and the filling is bubbly.",
+      "Let cool for 5 minutes before serving."
+    ],
+    "notes": "For added flavor, sprinkle shredded cheddar cheese over the top before baking.",
+    "tags": [
+      "comfort food",
+      "casserole",
+      "chicken",
+      "dinner"
+    ],
+    "slug": "chicken-pot-pie-casserole"
+  },
+  {
+    "title": "Bibim Guksu (Korean Spicy Cold Noodles)",
+    "description": "A refreshing cold noodle dish tossed in a spicy, sweet, and tangy sauce, perfect for hot summer days.",
+    "prepTime": "10 minutes",
+    "cookTime": "5 minutes",
+    "totalTime": "15 minutes",
+    "servings": "2",
+    "ingredients": [
+      "6 oz somyeon (thin wheat noodles)",
+      "1/2 cucumber, julienned",
+      "1 hard-boiled egg, halved",
+      "1 tablespoon gochujang (Korean chili paste)",
+      "1 tablespoon soy sauce",
+      "1 tablespoon rice vinegar",
+      "1 tablespoon sugar",
+      "1 teaspoon sesame oil",
+      "1 teaspoon sesame seeds"
+    ],
+    "instructions": [
+      "Cook noodles according to package instructions. Drain and rinse under cold water.",
+      "In a bowl, mix gochujang, soy sauce, rice vinegar, sugar, and sesame oil to make the sauce.",
+      "Toss the cold noodles with the sauce until evenly coated.",
+      "Divide noodles into serving bowls. Top with julienned cucumber and half a boiled egg.",
+      "Sprinkle with sesame seeds before serving."
+    ],
+    "notes": "For added flavor, include kimchi or sliced pear as toppings.",
+    "tags": [
+      "Korean",
+      "noodles",
+      "spicy",
+      "cold dish",
+      "vegetarian"
+    ],
+    "slug": "bibim-guksu-korean-spicy-cold-noodles"
+  },
+  {
+    "title": "Chickpea Paprikash",
+    "description": "A hearty vegetarian twist on the classic Hungarian dish, featuring chickpeas in a rich paprika-infused sauce.",
+    "prepTime": "10 minutes",
+    "cookTime": "25 minutes",
+    "totalTime": "35 minutes",
+    "servings": "4",
+    "ingredients": [
+      "2 tablespoons olive oil",
+      "1 onion, diced",
+      "3 cloves garlic, minced",
+      "2 tablespoons sweet paprika",
+      "1 tablespoon tomato paste",
+      "2 cans (15 oz each) chickpeas, drained and rinsed",
+      "1 cup vegetable broth",
+      "1/2 cup vegan sour cream",
+      "Salt and pepper to taste",
+      "Fresh parsley, chopped (for garnish)"
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium heat. Add diced onion and cook until translucent.",
+      "Add minced garlic and paprika. Stir for 1 minute until fragrant.",
+      "Stir in tomato paste, chickpeas, and vegetable broth. Bring to a simmer.",
+      "Cook for 15-20 minutes, allowing the flavors to meld.",
+      "Stir in vegan sour cream and cook for an additional 5 minutes.",
+      "Season with salt and pepper to taste.",
+      "Garnish with chopped fresh parsley before serving."
+    ],
+    "notes": "Serve over pasta, rice, or with crusty bread for a complete meal.",
+    "tags": [
+      "vegetarian",
+      "Hungarian",
+      "comfort food",
+      "dinner"
+    ],
+    "slug": "chickpea-paprikash"
+  },
+  {
+    "title": "Bibimbap Sauce",
+    "description": "A flavorful Korean sauce made with gochujang, perfect for drizzling over bibimbap or other rice dishes.",
+    "prepTime": "5 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "5 minutes",
+    "servings": "4",
+    "ingredients": [
+      "2 tablespoons gochujang (Korean chili paste)",
+      "1 tablespoon sesame oil",
+      "1 tablespoon sugar",
+      "1 tablespoon water",
+      "1 tablespoon toasted sesame seeds",
+      "1 teaspoon vinegar (apple cider or rice vinegar)",
+      "1 teaspoon minced garlic"
+    ],
+    "instructions": [
+      "In a small bowl, combine gochujang, sesame oil, sugar, water, sesame seeds, vinegar, and minced garlic.",
+      "Mix well until all ingredients are fully incorporated.",
+      "Adjust the consistency with additional water if desired.",
+      "Use immediately or store in an airtight container in the refrigerator for up to a week."
+    ],
+    "notes": "This sauce adds a spicy and savory kick to various Korean dishes.",
+    "tags": [
+      "Korean",
+      "sauce",
+      "spicy",
+      "condiment"
+    ],
+    "slug": "bibimbap-sauce"
+  },
+  {
+    "title": "Pad Thai",
+    "description": "A classic Thai stir-fried noodle dish featuring rice noodles, protein of choice, eggs, and a tangy-sweet sauce, garnished with peanuts and fresh herbs.",
+    "prepTime": "15 minutes",
+    "cookTime": "15 minutes",
+    "totalTime": "30 minutes",
+    "servings": "4",
+    "ingredients": [
+      "8 oz rice noodles",
+      "2 tablespoons vegetable oil",
+      "2 cloves garlic, minced",
+      "2 eggs, lightly beaten",
+      "1 cup protein of choice (chicken, shrimp, or tofu)",
+      "1 cup bean sprouts",
+      "1/4 cup chopped green onions",
+      "1/4 cup crushed peanuts",
+      "2 tablespoons fish sauce",
+      "1 tablespoon soy sauce",
+      "1 tablespoon brown sugar",
+      "1 tablespoon lime juice",
+      "1/2 teaspoon chili powder",
+      "Lime wedges, for serving"
+    ],
+    "instructions": [
+      "Cook rice noodles according to package instructions. Drain and set aside.",
+      "In a small bowl, mix together fish sauce, soy sauce, brown sugar, lime juice, and chili powder to create the sauce.",
+      "Heat oil in a large skillet or wok over medium heat. Add garlic and saut\u00e9 until fragrant.",
+      "Add protein and cook until done. Push to one side of the pan.",
+      "Pour beaten eggs into the other side and scramble until cooked.",
+      "Add cooked noodles and sauce to the pan. Toss everything together to combine.",
+      "Stir in bean sprouts and green onions. Cook for another 2 minutes.",
+      "Serve hot, garnished with crushed peanuts and lime wedges."
+    ],
+    "notes": "Customize with your preferred protein and adjust the spiciness to taste.",
+    "tags": [
+      "Thai",
+      "noodles",
+      "stir-fry",
+      "quick",
+      "dinner"
+    ],
+    "slug": "pad-thai"
+  },
+  {
+    "title": "Tuscan Sausage Pasta",
+    "description": "A creamy and flavorful pasta dish featuring Italian sausage, sun-dried tomatoes, spinach, and a rich garlic-parmesan sauce.",
+    "prepTime": "10 minutes",
+    "cookTime": "20 minutes",
+    "totalTime": "30 minutes",
+    "servings": "6",
+    "ingredients": [
+      "1 pound Italian sausage",
+      "8 oz penne pasta",
+      "1/2 cup sun-dried tomatoes, chopped",
+      "2 cups spinach",
+      "1 cup heavy cream",
+      "1/2 cup grated Parmesan cheese",
+      "2 cloves garlic, minced",
+      "1 teaspoon Italian seasoning",
+      "Salt and pepper to taste"
+    ],
+    "instructions": [
+      "Cook pasta according to package instructions. Drain and set aside.",
+      "In a large skillet, cook Italian sausage over medium heat until browned. Remove excess grease.",
+      "Add garlic and sun-dried tomatoes to the skillet. Saut\u00e9 for 2 minutes.",
+      "Pour in heavy cream and bring to a simmer.",
+      "Stir in Parmesan cheese and Italian seasoning. Cook until sauce thickens.",
+      "Add spinach and cooked pasta to the skillet. Toss until spinach wilts and pasta is coated.",
+      "Season with salt and pepper to taste. Serve warm."
+    ],
+    "notes": "For a lighter version, substitute heavy cream with half-and-half.",
+    "tags": [
+      "Italian",
+      "pasta",
+      "sausage",
+      "creamy",
+      "dinner"
+    ],
+    "slug": "tuscan-sausage-pasta"
+  },
+  {
+    "title": "Blanched Green Beans",
+    "description": "Simple and vibrant green beans, blanched to perfection, making a crisp and healthy side dish.",
+    "prepTime": "5 minutes",
+    "cookTime": "2 minutes",
+    "totalTime": "7 minutes",
+    "servings": "4",
+    "ingredients": [
+      "1 pound fresh green beans, trimmed",
+      "Salt, for boiling water",
+      "Ice water, for blanching"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Add green beans and cook for 2 minutes until bright green and tender-crisp.",
+      "Immediately transfer beans to a bowl of ice water to stop cooking.",
+      "Once cooled, drain and pat dry.",
+      "Serve as is or saut\u00e9 with garlic and olive oil for added flavor."
+    ],
+    "notes": "Blanched green beans can be stored in the refrigerator for up to 3 days.",
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "side dish",
+      "healthy",
+      "quick"
+    ],
+    "slug": "blanched-green-beans"
+  },
+  {
+    "title": "No-Bake Energy Bites",
+    "description": "Delicious and healthy energy bites made with oats, peanut butter, and chocolate chips. Perfect for a quick snack or breakfast on-the-go.",
+    "prepTime": "10 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "10 minutes",
+    "servings": "20",
+    "ingredients": [
+      "1 cup old-fashioned oats",
+      "2/3 cup toasted shredded coconut",
+      "1/2 cup creamy peanut butter",
+      "1/2 cup ground flaxseed",
+      "1/2 cup semisweet chocolate chips",
+      "1/3 cup honey",
+      "1 tablespoon chia seeds (optional)",
+      "1 teaspoon vanilla extract"
+    ],
+    "instructions": [
+      "In a large bowl, combine all ingredients and mix well.",
+      "Cover and refrigerate for 30 minutes.",
+      "Once chilled, roll into 1-inch balls.",
+      "Store in an airtight container in the refrigerator for up to 1 week."
+    ],
+    "notes": "Customize with your favorite mix-ins like dried fruit or nuts.",
+    "tags": [
+      "snack",
+      "no-bake",
+      "healthy",
+      "vegetarian",
+      "quick"
+    ],
+    "slug": "no-bake-energy-bites"
+  },
+  {
+    "title": "Iced Matcha Latte",
+    "description": "A refreshing and creamy iced matcha latte made with matcha powder, milk of choice, and a touch of sweetener.",
+    "prepTime": "5 minutes",
+    "cookTime": "0 minutes",
+    "totalTime": "5 minutes",
+    "servings": "1",
+    "ingredients": [
+      "1 teaspoon matcha powder",
+      "2 ounces cold water",
+      "6 ounces milk of choice (almond, oat, etc.)",
+      "Ice",
+      "Sweetener of choice (honey, maple syrup), to taste"
+    ],
+    "instructions": [
+      "In a small bowl, whisk matcha powder with cold water until smooth.",
+      "Fill a glass with ice and pour in the milk.",
+      "Add sweetener to the milk and stir.",
+      "Pour the matcha mixture over the milk and stir to combine.",
+      "Serve immediately."
+    ],
+    "notes": "Adjust the amount of matcha and sweetener to taste.",
+    "tags": [
+      "beverage",
+      "matcha",
+      "iced",
+      "vegetarian",
+      "quick"
+    ],
+    "slug": "iced-matcha-latte"
+  }
+]
+
+// Utility functions
+
+// Get all recipes
+export function getAllRecipes(): Recipe[] {
+  return recipes
+}
+
+// Get a recipe by slug
+export function getRecipeBySlug(slug: string): Recipe | undefined {
+  return recipes.find((recipe) => recipe.slug === slug)
+}
+
+// Get all recipe slugs
+export function getAllRecipeSlugs(): string[] {
+  return recipes.map((recipe) => recipe.slug)
+}
+
+// Get all unique categories (derived from tags)
+export function getAllCategories(): string[] {
+  const categoriesSet = new Set<string>()
+
+  recipes.forEach((recipe) => {
+    recipe.tags.forEach((tag) => {
+      categoriesSet.add(tag)
+    })
+  })
+
+  return Array.from(categoriesSet).sort()
+}
+
+// Get all unique tags
+export function getAllTags(): string[] {
+  const tagsSet = new Set<string>()
+
+  recipes.forEach((recipe) => {
+    recipe.tags.forEach((tag) => {
+      tagsSet.add(tag)
+    })
+  })
+
+  return Array.from(tagsSet).sort()
+}
+
+// Get featured recipes
+export function getFeaturedRecipes(count = 3): Recipe[] {
+  // In a real app, you might have a "featured" flag or use other criteria
+  return recipes.slice(0, count)
+}
+
+// Filter recipes by category and/or tags
+interface FilterOptions {
+  category?: string
+  tags?: string[]
+}
+
+export function getFilteredRecipes({ category, tags = [] }: FilterOptions): Recipe[] {
+  return recipes.filter((recipe) => {
+    // Filter by category if provided
+    if (category && !recipe.tags.includes(category)) {
+      return false
+    }
+
+    // Filter by tags if provided
+    if (tags.length > 0 && !tags.every((tag) => recipe.tags.includes(tag))) {
+      return false
+    }
+
+    return true
+  })
+}
+
+// Search recipes by query
+export function searchRecipes(query: string): Recipe[] {
+  const searchTerms = query
+    .toLowerCase()
+    .split(" ")
+    .filter((term) => term.length > 0)
+
+  if (searchTerms.length === 0) {
+    return []
+  }
+
+  return recipes.filter((recipe) => {
+    const searchableText = [
+      recipe.title,
+      recipe.description,
+      ...recipe.ingredients,
+      ...recipe.instructions,
+      recipe.notes || "",
+      ...recipe.tags,
+    ]
+      .join(" ")
+      .toLowerCase()
+
+    return searchTerms.some((term) => searchableText.includes(term))
+  })
+}
