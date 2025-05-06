@@ -31,7 +31,7 @@ export function SearchResults({ query }: SearchResultsProps) {
               <Link href={`/recipes/${recipe.slug}`} className="block">
                 <div className="aspect-square relative overflow-hidden rounded-xl">
                   <Image
-                    src={`/placeholder.svg?height=200&width=200&text=${encodeURIComponent(recipe.title)}`}
+                    src={recipe.imageUrl || `/placeholder.svg?height=300&width=500&text=${encodeURIComponent(recipe.title)}`}
                     alt={recipe.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"

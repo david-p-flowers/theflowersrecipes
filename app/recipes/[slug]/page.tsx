@@ -75,7 +75,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
           <div className="mb-8">
             <div className="relative rounded-xl overflow-hidden">
               <Image
-                src={`/placeholder.svg?height=600&width=800&text=${encodeURIComponent(recipe.title)}`}
+                src={recipe.imageUrl || `/placeholder.svg?height=300&width=500&text=${encodeURIComponent(recipe.title)}`}
                 alt={recipe.title}
                 width={800}
                 height={600}
@@ -125,12 +125,11 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="lg:col-span-1">
+        {/* <div className="lg:col-span-1">
           <div className="sticky top-8">
             <Card className="flower-card border-none">
               <CardContent className="pt-6">
                 <h3 className="text-lg font-bold mb-4 text-flower-purple">You might also like</h3>
-                {/* This would be populated with similar recipes */}
                 <div className="space-y-4">
                   <div className="group flex gap-3">
                     <div className="h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
@@ -191,7 +190,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
               </Card>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -24,7 +24,7 @@ export default function RecipesPage({
       <DecorativeFlower size="sm" color="green" className="bottom-1/4 right-0 opacity-10" />
 
       <h1 className="text-4xl font-bold mb-8 text-center">
-        <span className="text-flower-pink">Blooming</span> Recipes
+        <span className="text-flower-pink">All Recipes</span>
       </h1>
 
       <div className="mb-8">
@@ -32,10 +32,10 @@ export default function RecipesPage({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="md:col-span-1">
+        {/* <div className="md:col-span-1">
           <RecipeFilters selectedCategory={category} selectedTags={tags} />
-        </div>
-        <div className="md:col-span-3">
+        </div> */}
+        <div className="md:col-span-4">
           <Suspense fallback={<RecipeGridSkeleton />}>
             <RecipeGrid category={category} tags={tags} />
           </Suspense>

@@ -7,23 +7,23 @@ import { Check, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { getAllCategories, getAllTags } from "@/lib/recipes"
+import { getAllTags } from "@/lib/recipes"
 
 interface RecipeFiltersProps {
   selectedCategory?: string
   selectedTags?: string[]
 }
 
+const CATEGORY_OPTIONS = ["breakfast", "lunch", "dinner", "dessert", "snack", "drink"]
+
 export function RecipeFilters({ selectedCategory, selectedTags = [] }: RecipeFiltersProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const [categories] = useState(getAllCategories())
   const [tags] = useState(getAllTags())
   const [selectedTagsState, setSelectedTagsState] = useState<string[]>(selectedTags)
   const [categoryOpen, setCategoryOpen] = useState(true)
   const [tagsOpen, setTagsOpen] = useState(true)
 
-  // Update state when props change
   useEffect(() => {
     setSelectedTagsState(selectedTags)
   }, [selectedTags])
@@ -39,33 +39,25 @@ export function RecipeFilters({ selectedCategory, selectedTags = [] }: RecipeFil
       params.set("tags", selectedTagsState.join(","))
     }
 
-    const queryString = params.toString()
-    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`)
+    router.push(`${pathname}${params.toString() ? `?${params}` : ""}`)
   }
 
   const handleTagChange = (tag: string, checked: boolean) => {
-    let newTags: string[]
-
-    if (checked) {
-      newTags = [...selectedTagsState, tag]
-    } else {
-      newTags = selectedTagsState.filter((t) => t !== tag)
-    }
+    const newTags = checked
+      ? [...selectedTagsState, tag]
+      : selectedTagsState.filter((t) => t !== tag)
 
     setSelectedTagsState(newTags)
 
     const params = new URLSearchParams()
-
     if (selectedCategory) {
       params.set("category", selectedCategory)
     }
-
     if (newTags.length > 0) {
       params.set("tags", newTags.join(","))
     }
 
-    const queryString = params.toString()
-    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`)
+    router.push(`${pathname}${params.toString() ? `?${params}` : ""}`)
   }
 
   const clearFilters = () => {
@@ -98,28 +90,21 @@ export function RecipeFilters({ selectedCategory, selectedTags = [] }: RecipeFil
           </Button>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4 space-y-1">
-          {categories.map((category) => {
-            const categoryName = category
-              .split("-")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ")
-
-            return (
-              <div key={category} className="flex items-center space-x-2">
-                <Button
-                  variant={category === selectedCategory ? "default" : "ghost"}
-                  size="sm"
-                  className={`justify-start w-full rounded-full ${
-                    category === selectedCategory ? "bg-flower-pink hover:bg-flower-pink/90" : ""
-                  }`}
-                  onClick={() => handleCategoryChange(category)}
-                >
-                  {category === selectedCategory && <Check className="mr-2 h-4 w-4" />}
-                  {categoryName}
-                </Button>
-              </div>
-            )
-          })}
+          {CATEGORY_OPTIONS.map((category) => (
+            <div key={category} className="flex items-center space-x-2">
+              <Button
+                variant={category === selectedCategory ? "default" : "ghost"}
+                size="sm"
+                className={`justify-start w-full rounded-full ${
+                  category === selectedCategory ? "bg-flower-pink hover:bg-flower-pink/90" : ""
+                }`}
+                onClick={() => handleCategoryChange(category)}
+              >
+                {category === selectedCategory && <Check className="mr-2 h-4 w-4" />}
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Button>
+            </div>
+          ))}
         </CollapsibleContent>
       </Collapsible>
 

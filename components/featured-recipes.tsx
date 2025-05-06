@@ -12,15 +12,15 @@ export function FeaturedRecipes() {
       {recipes.map((recipe) => (
         <Card key={recipe.slug} className="flower-card group overflow-hidden border-none">
           <Link href={`/recipes/${recipe.slug}`} className="block">
-            {/* <div className="aspect-video relative overflow-hidden rounded-xl">
+            <div className="aspect-video relative overflow-hidden rounded-xl">
               <Image
-                src={`/placeholder.svg?height=300&width=500&text=${encodeURIComponent(recipe.title)}`}
+                src={recipe.imageUrl || `/placeholder.svg?height=300&width=500&text=${encodeURIComponent(recipe.title)}`}
                 alt={recipe.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               /> 
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
-            </div> */}
+            </div>
           </Link>
           <CardContent className="pt-6">
             <Link href={`/recipes/${recipe.slug}`} className="block">

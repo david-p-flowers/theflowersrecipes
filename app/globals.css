@@ -13,10 +13,11 @@
     --popover: 40 50% 98%;
     --popover-foreground: 340 10% 20%;
 
-    --primary: 335 100% 70%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 0%;                    /* Black */
+    --primary-foreground: 0 0% 100%;      /* White for contrast if used */
 
-    --secondary: 260 70% 68%;
+
+    --secondary: 258 100% 65%;             /* Optional bold purple */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 40 30% 94%;
