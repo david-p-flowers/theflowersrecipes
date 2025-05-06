@@ -1,23 +1,4 @@
-// This file contains the recipe data and utility functions
-
-// Define the Recipe type
-export interface Recipe {
-  slug: string
-  title: string
-  description: string
-  prepTime: string
-  cookTime: string
-  totalTime: string
-  servings: string
-  ingredients: string[]
-  instructions: string[]
-  notes?: string
-  tags: string[]
-  imageUrl?: string
-}
-
-// Sample recipe data
-const recipes: Recipe[] = [
+[
   {
     "slug": "gluten-free-banana-muffins",
     "title": "Healthy Gluten-Free Banana Muffins (Dairy-Free)",
@@ -49,13 +30,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Muffins are freezer-friendly. Ensure almond flour is packed when measuring.",
     "tags": [
-      "gluten-free",
-      "dairy-free",
       "breakfast",
-      "muffins",
-      "healthy"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Gluten%20Free%20Banana%20Muffins-HrGP6lky33w9oqnNLvfPigpXoJypDd"
+      "dairy-free"
+    ]
   },
   {
     "slug": "healthy-banana-muffins",
@@ -90,12 +67,8 @@ const recipes: Recipe[] = [
     ],
     "notes": "Muffins freeze well. For vegan option, use flax eggs and non-dairy milk.",
     "tags": [
-      "whole wheat",
-      "naturally sweetened",
-      "breakfast",
-      "muffins"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Banana%20Muffin-nnnQa0HclpgIYboAlHhVBGLFYffeiZ"
+      "breakfast"
+    ]
   },
   {
     "slug": "chocolate-peanut-butter-cookies",
@@ -129,13 +102,8 @@ const recipes: Recipe[] = [
     ],
     "notes": "Store in an airtight container for up to 5 days. Cookies can be frozen for longer storage.",
     "tags": [
-      "cookies",
-      "chocolate",
-      "peanut butter",
-      "gluten-free",
       "dessert"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Peanut%20Butter%20Cookies-ghSOqH6GPlhyqoLnwrLLzU2WDJj6Fz"
+    ]
   },
   {
     "slug": "peach-crisp-for-one",
@@ -166,12 +134,8 @@ const recipes: Recipe[] = [
     ],
     "notes": "Can use canned peaches; drain before using. Serve with vanilla ice cream or whipped cream.",
     "tags": [
-      "dessert",
-      "fruit",
-      "single-serve",
-      "easy"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Peach%20Crisp%20for%20One-X6WbdSYHEtZxDqGHB39DBLBUoonidW"
+      "dessert"
+    ]
   },
   {
     "slug": "traditional-key-lime-pie",
@@ -206,13 +170,8 @@ const recipes: Recipe[] = [
     ],
     "notes": "Pie must chill completely before serving. Use freshly squeezed key lime juice for best flavor.",
     "tags": [
-      "dessert",
-      "pie",
-      "classic",
-      "citrus",
-      "make-ahead"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Key%20Lime%20Pie-fDReYGH1rkfmXFguPPcpT2ZkXusJGZ"
+      "dessert"
+    ]
   },
   {
     "slug": "cottage-cheese-egg-bites",
@@ -240,12 +199,8 @@ const recipes: Recipe[] = [
     ],
     "notes": "Store in the fridge for up to 5 days or freeze for up to 3 months. Reheat in the microwave for a quick breakfast.",
     "tags": [
-      "breakfast",
-      "high-protein",
-      "gluten-free",
-      "meal prep"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Egg%20Bites-H1A4qLd1AV3hPnlkiaa8BTSurXqFX5"
+      "breakfast"
+    ]
   },
   {
     "slug": "tater-tot-sausage-casserole",
@@ -276,11 +231,8 @@ const recipes: Recipe[] = [
     "notes": "Can be assembled the night before and baked in the morning. Add vegetables like bell peppers or onions for variation.",
     "tags": [
       "breakfast",
-      "casserole",
-      "meal prep",
-      "comfort food"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Tater%20tot%20casserole-Ys35zFSnZT6vGwNwc4o5jTrGHEGJzQ"
+      "casserole"
+    ]
   },
   {
     "slug": "vegetable-frittata",
@@ -310,11 +262,8 @@ const recipes: Recipe[] = [
     "notes": "Use any combination of vegetables on hand. Serve warm or at room temperature.",
     "tags": [
       "breakfast",
-      "gluten-free",
-      "vegetarian",
-      "eggs"
-    ],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Veggie%20Fritada%20-JQrVfcqV0888P3qIfeLuaRP3SyLCqN"
+      "vegetarian"
+    ]
   },
   {
     "title": "Chopped Broccoli & Chickpea Salad",
@@ -346,14 +295,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "This salad is great for meal prep and can be stored in the refrigerator for up to 4 days.",
     "tags": [
-      "vegetarian",
-      "gluten-free",
-      "meal prep",
-      "salad",
-      "lunch"
+      "lunch",
+      "vegetarian"
     ],
-    "slug": "chopped-broccoli-chickpea-salad",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Broccoli%20salad-yy5GcWBNLq5t00xZSwY1saLBBvy8dW"
+    "slug": "chopped-broccoli-chickpea-salad"
   },
   {
     "title": "Healthy Chicken Salad",
@@ -383,14 +328,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This chicken salad can be stored in an airtight container in the refrigerator for up to 5 days. It's perfect for sandwiches, wraps, or served over a bed of greens.",
     "tags": [
-      "high-protein",
-      "gluten-free",
-      "meal prep",
-      "salad",
       "lunch"
     ],
-    "slug": "healthy-chicken-salad",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chicken%20Salad-I9q7gF5B506cp6NJkg1qKjXwqULrA7"
+    "slug": "healthy-chicken-salad"
   },
   {
     "title": "Vegetarian Chili",
@@ -431,13 +371,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "This chili tastes even better the next day and freezes well for future meals.",
     "tags": [
-      "vegetarian",
-      "gluten-free",
       "dinner",
-      "comfort food"
+      "vegetarian"
     ],
-    "slug": "vegetarian-chili",
-     "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/images/Veggie_Chili-Gahjz6OwM3ZJDnuQUcpUgIoJQwfgte.png"
+    "slug": "vegetarian-chili"
   },
   {
     "title": "Lemon Chicken Piccata",
@@ -475,14 +412,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Serve with saut\u00e9ed cauliflower rice or zucchini noodles for a complete meal.",
     "tags": [
-      "paleo",
-      "Whole30",
-      "keto",
-      "gluten-free",
       "dinner"
     ],
-    "slug": "lemon-chicken-piccata",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chicken_Picata-qHcJKdvVVTtN7eb5m67LwQYDJr7ZLb"
+    "slug": "lemon-chicken-piccata"
   },
   {
     "title": "Sausage & Peppers",
@@ -519,12 +451,10 @@ const recipes: Recipe[] = [
     "notes": "Serve over pasta, rice, or in hoagie rolls for a hearty meal.",
     "tags": [
       "Italian",
-      "gluten-free",
       "dinner",
       "one-pan"
     ],
-    "slug": "sausage-peppers",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Sausage%20%26%20Peppers-Tuz2JEmdjKVElggp2u4sVSMTBj20Kk",
+    "slug": "sausage-peppers"
   },
   {
     "title": "Greek Chickpea Salad",
@@ -555,14 +485,11 @@ const recipes: Recipe[] = [
     ],
     "notes": "This salad can be made ahead and stored in the refrigerator for up to 3 days.",
     "tags": [
-      "vegetarian",
-      "gluten-free",
       "Mediterranean",
-      "salad",
-      "lunch"
+      "lunch",
+      "vegetarian"
     ],
-    "slug": "greek-chickpea-salad",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chick%20pea%20salad-PIh4nnG4PHMBA1OKZV8IEi5Nu3Yij6"
+    "slug": "greek-chickpea-salad"
   },
   {
     "title": "Veggie-Loaded Quinoa Black Bean Casserole",
@@ -596,14 +523,11 @@ const recipes: Recipe[] = [
     ],
     "notes": "This casserole is versatile and can be customized with additional vegetables or protein sources. It's also freezer-friendly; cool completely before freezing in an airtight container.",
     "tags": [
-      "vegetarian",
-      "gluten-free",
-      "meal prep",
       "casserole",
-      "dinner"
+      "dinner",
+      "vegetarian"
     ],
-    "slug": "veggie-loaded-quinoa-black-bean-casserole",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Quinoa%20black%20bean%20casserole-NMVMoaVhjhZTobf3dm2Qb2JbGuKToc"
+    "slug": "veggie-loaded-quinoa-black-bean-casserole"
   },
   {
     "title": "Lemon Herb Grilled Chicken",
@@ -633,15 +557,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "For best flavor, marinate the chicken overnight. This recipe is versatile and pairs well with a variety of side dishes.",
     "tags": [
-      "gluten-free",
-      "paleo",
-      "whole30",
-      "grilled",
-      "chicken",
       "dinner"
     ],
-    "slug": "lemon-herb-grilled-chicken",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Lemon%20herb%20chicken%20marinade-V63Yv5Q0oMSVnH8aPc8BIzHgbFXMh3"
+    "slug": "lemon-herb-grilled-chicken"
   },
   {
     "title": "Grilled Veggie Skewers",
@@ -675,15 +593,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Feel free to customize with your favorite vegetables or add tofu for extra protein. These skewers pair well with grilled meats or can be served over rice or quinoa for a complete meal.",
     "tags": [
-      "vegetarian",
-      "vegan",
-      "gluten-free",
-      "grilling",
-      "summer",
-      "side dish"
+      "vegetarian"
     ],
-    "slug": "grilled-veggie-skewers",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Veggie%20skewers-GdKSJwL61oIcAQn0s8YtE1MWAAg8gj"
+    "slug": "grilled-veggie-skewers"
   },
   {
     "title": "Garlic Parmesan Kale Pasta",
@@ -713,14 +625,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "For added protein, consider topping with grilled chicken or a poached egg. Whole wheat pasta can be used for a nuttier flavor.",
     "tags": [
-      "vegetarian",
-      "quick",
-      "easy",
-      "pasta",
-      "dinner"
+      "dinner",
+      "vegetarian"
     ],
-    "slug": "garlic-parmesan-kale-pasta",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Garlic%20kale%20pasta-FhIuiEz52aRScLehGoX50jgKjizMPK"
+    "slug": "garlic-parmesan-kale-pasta"
   },
   {
     "title": "The Best Easy Healthy Lasagna",
@@ -758,14 +666,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This lasagna can be assembled ahead of time and refrigerated until ready to bake. Leftovers freeze well for future meals.",
     "tags": [
-      "healthy",
-      "high-protein",
-      "meal prep",
-      "comfort food",
       "dinner"
     ],
-    "slug": "the-best-easy-healthy-lasagna",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Lasagna-trN01PYfQVBTBV9HLfhEydGO9HsDeO"
+    "slug": "the-best-easy-healthy-lasagna"
   },
   {
     "title": "Spicy Tuna Poke Bowl",
@@ -797,14 +700,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Feel free to customize with additional toppings like seaweed salad, pickled ginger, or edamame. For a low-carb option, substitute rice with cauliflower rice.",
     "tags": [
-      "gluten-free",
-      "high-protein",
-      "quick",
-      "seafood",
       "dinner"
     ],
-    "slug": "spicy-tuna-poke-bowl",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Spicy%20Tuna%20Poke%20Bowl-JBnODdZrknCrHT9AGSh6hQjQrDEpJd"
+    "slug": "spicy-tuna-poke-bowl"
   },
   {
     "title": "Easiest Shredded Chicken",
@@ -828,14 +726,8 @@ const recipes: Recipe[] = [
       "Use immediately or store in an airtight container in the refrigerator for up to 4 days."
     ],
     "notes": "This shredded chicken is great for tacos, salads, sandwiches, and more. It can also be frozen for up to 3 months.",
-    "tags": [
-      "meal prep",
-      "gluten-free",
-      "protein",
-      "versatile"
-    ],
-    "slug": "easiest-shredded-chicken",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Easiest%20shredded%20chicken-nUxKCvPoTQlUbX8oeu6gpWStUdNrJI"
+    "tags": [],
+    "slug": "easiest-shredded-chicken"
   },
   {
     "title": "Japchae (Korean Glass Noodle Stir-Fry)",
@@ -871,14 +763,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Japchae can be enjoyed warm or at room temperature. It's a popular dish for Korean celebrations and gatherings.",
     "tags": [
-      "Korean",
-      "noodles",
-      "stir-fry",
-      "beef",
-      "vegetarian option"
+      "Korean"
     ],
-    "slug": "japchae-korean-glass-noodle-stir-fry",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Japchae-EhqyotQisyzDG52NFHBEWc0teGGLsx"
+    "slug": "japchae-korean-glass-noodle-stir-fry"
   },
   {
     "title": "Spicy Italian Sausage Pasta",
@@ -913,14 +800,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "For a milder version, use sweet Italian sausage instead of spicy. This dish pairs well with a simple green salad and crusty bread.",
     "tags": [
-      "pasta",
       "Italian",
-      "spicy",
-      "quick",
       "dinner"
     ],
-    "slug": "spicy-italian-sausage-pasta",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Italian%20Sausage%20Pasta-TjPBZCVSCPJnhUEmNR8zTNGv8HWt3o"
+    "slug": "spicy-italian-sausage-pasta"
   },
   {
     "title": "Vegetable Soup",
@@ -960,15 +843,8 @@ const recipes: Recipe[] = [
       "Serve hot, garnished with fresh herbs if desired."
     ],
     "notes": "This soup is versatile; feel free to use any vegetables you have on hand. It stores well and tastes even better the next day.",
-    "tags": [
-      "vegan",
-      "gluten-free",
-      "healthy",
-      "soup",
-      "meal prep"
-    ],
-    "slug": "vegetable-soup",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Veggie%20Soup-TH5xYEvIF7WXXl2k6C963xN4NS7UAc"
+    "tags": [],
+    "slug": "vegetable-soup"
   },
   {
     "title": "Lemon Garlic Parmesan Shrimp Pasta",
@@ -1003,14 +879,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "For a lighter version, substitute half of the butter with additional olive oil. Adjust red pepper flakes to your preferred spice level.",
     "tags": [
-      "seafood",
-      "pasta",
-      "quick",
-      "dinner",
-      "one-pot"
+      "dinner"
     ],
-    "slug": "lemon-garlic-parmesan-shrimp-pasta",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Shrimp%20pasta-CuV4NaeWbcx1knw6uybul8dXvQLnfH"
+    "slug": "lemon-garlic-parmesan-shrimp-pasta"
   },
   {
     "title": "Baked Ziti with Sausage",
@@ -1045,14 +916,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "This dish can be assembled ahead of time and refrigerated until ready to bake. Leftovers can be stored in the refrigerator for up to 3 days.",
     "tags": [
-      "pasta",
       "Italian",
-      "comfort food",
-      "baked",
       "dinner"
     ],
-    "slug": "baked-ziti-with-sausage",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Baked%20Ziti-menF9lEarqeP4u1MnlME8WhJFT5jtV"
+    "slug": "baked-ziti-with-sausage"
   },
   {
     "title": "Asian Chicken Lettuce Wraps",
@@ -1085,14 +952,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "For a spicier version, add a dash of sriracha or red pepper flakes to the sauce.",
     "tags": [
-      "gluten-free",
       "dairy-free",
-      "quick",
-      "healthy",
       "dinner"
     ],
-    "slug": "asian-chicken-lettuce-wraps",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Asain%20Wrap-c0DUZQzJvXPE9oiTmeqBcKCHj9Wh2a"
+    "slug": "asian-chicken-lettuce-wraps"
   },
   {
     "title": "Mexican Stuffed Sweet Potatoes",
@@ -1124,13 +987,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Customize with your favorite toppings like jalape\u00f1os, hot sauce, or shredded vegan cheese.",
     "tags": [
-      "vegan",
-      "gluten-free",
-      "healthy",
       "dinner"
     ],
-    "slug": "mexican-stuffed-sweet-potatoes",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Stuffed%20Sweet%20Potatoe-ZcDrbyYKlthDmhy8P8ySi8uusEQpMN"
+    "slug": "mexican-stuffed-sweet-potatoes"
   },
   {
     "title": "Cheesy Chicken Spaghetti Squash Casserole",
@@ -1162,14 +1021,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This casserole can be prepared ahead of time and frozen for later use.",
     "tags": [
-      "gluten-free",
-      "low-carb",
-      "high-protein",
-      "meal prep",
       "dinner"
     ],
-    "slug": "cheesy-chicken-spaghetti-squash-casserole",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chicken%20Caserole-yeYlgFQgawgYjidVqe6tmH6zNHP7TT"
+    "slug": "cheesy-chicken-spaghetti-squash-casserole"
   },
   {
     "title": "Korean Salmon Rice Bowl",
@@ -1201,14 +1055,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Adjust the amount of gochujang to control the spice level. For a gluten-free version, use tamari instead of soy sauce.",
     "tags": [
-      "gluten-free",
-      "high-protein",
-      "quick",
-      "healthy",
       "dinner"
     ],
-    "slug": "korean-salmon-rice-bowl",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Salmon%20Bowl-O4uE2qe4ncFZsSDkeRswPAjrLz42pC"
+    "slug": "korean-salmon-rice-bowl"
   },
   {
     "title": "Easy Healthy Taco Soup",
@@ -1240,59 +1089,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This soup is freezer-friendly and can be stored in airtight containers for up to 3 months.",
     "tags": [
-      "gluten-free",
-      "high-protein",
-      "one-pot",
-      "meal prep",
       "dinner"
     ],
-    "slug": "easy-healthy-taco-soup",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Taco%20Soup-sAMumZR0gjTGPnhVTWBkkyibDVuNTb"
-  },
-  {
-    "slug": "spicy-lasagna-soup",
-    "title": "Spicy Lasagna Soup",
-    "description": "A cozy, one-pot lasagna soup featuring spicy Italian sausage, rich tomato broth, tender noodles, and creamy cheese toppings—ready in just 35 minutes.",
-    "prepTime": "10 minutes",
-    "cookTime": "25 minutes",
-    "totalTime": "35 minutes",
-    "servings": "6 servings",
-    "ingredients": [
-      "1 tablespoon olive oil",
-      "1 lb hot Italian sausage",
-      "1 red bell pepper, chopped",
-      "1 sweet onion, chopped",
-      "2 carrots, peeled and chopped",
-      "6 cloves garlic, roughly chopped",
-      "2 teaspoons dried oregano",
-      "1 teaspoon dried basil",
-      "1 teaspoon dried thyme",
-      "1/4 teaspoon red pepper flakes",
-      "1/2 teaspoon kosher salt",
-      "1/2 teaspoon black pepper",
-      "1 (28 oz) jar marinara sauce",
-      "4 cups chicken broth",
-      "Parmesan rind (optional)",
-      "8 oz lasagna noodles",
-      "1/2 cup heavy cream",
-      "1/2 cup grated mozzarella cheese",
-      "1/3 cup ricotta cheese",
-      "1/4 cup basil pesto",
-      "Parmesan cheese and fresh basil, for serving"
-    ],
-    "instructions": [
-      "In a large soup pot or Dutch oven, heat olive oil over medium-high heat. Add the sausage, breaking it up with a wooden spoon, and cook for 5–7 minutes until browned and fully cooked. Remove to a paper towel-lined plate, leaving about 1 tablespoon of fat in the pot.",
-      "Reduce heat to medium and add the bell pepper, onion, carrots, and garlic. Sauté for 3–4 minutes until softened.",
-      "Add oregano, basil, thyme, red pepper flakes, salt, and pepper. Stir to coat the vegetables with the seasonings.",
-      "Return the sausage to the pot and pour in the marinara sauce and chicken broth. Add the Parmesan rind if using.",
-      "Option 1: Break uncooked lasagna noodles into pieces and add them to the soup. Simmer for 14–15 minutes until al dente.",
-      "Option 2: Cook lasagna noodles separately according to package directions, then slice into strips and add to the soup.",
-      "Simmer the soup for a few minutes to allow flavors to meld. Stir in heavy cream and grated mozzarella cheese.",
-      "Ladle the soup into bowls and garnish with dollops of ricotta cheese and pesto. Sprinkle with Parmesan cheese, fresh basil leaves, and freshly cracked black pepper."
-    ],
-    "notes": "For a milder version, use mild Italian sausage and omit red pepper flakes. To make it vegetarian, omit the sausage and use vegetable broth. Store leftovers in an airtight container in the refrigerator for 3–4 days; note that the noodles will absorb some of the broth over time.",
-    "tags": ["soup", "comfort food", "Italian", "one-pot", "spicy"],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Lasanga%20Soup-iePGjYlPlFkgyE2VucSPrHq6DAR0jw"
+    "slug": "easy-healthy-taco-soup"
   },
   {
     "title": "Easy White Chicken Chili",
@@ -1319,13 +1118,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This chili can be made ahead and stored in the refrigerator for up to 3 days.",
     "tags": [
-      "gluten-free",
-      "quick",
-      "one-pot",
       "dinner"
     ],
-    "slug": "easy-white-chicken-chili",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/White%20Chicken%20Chili-6jNluUqSYYSAU37Vx9md45F5AOdozt"
+    "slug": "easy-white-chicken-chili"
   },
   {
     "title": "Spicy Pork Noodles",
@@ -1360,13 +1155,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Adjust the level of spiciness by varying the amount of sriracha to your taste.",
     "tags": [
-      "spicy",
-      "quick",
-      "noodles",
       "dinner"
     ],
-    "slug": "spicy-pork-noodles",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Spicy%20Pork%20Noodle-DcLjWMC1NmHmRqMjbI8w4YUIqNgVPR"
+    "slug": "spicy-pork-noodles"
   },
   {
     "title": "Lentil Curry",
@@ -1402,13 +1193,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Serve over rice or with naan bread for a complete meal. Leftovers can be stored in the refrigerator for up to 4 days.",
     "tags": [
-      "vegan",
-      "gluten-free",
-      "one-pot",
       "dinner"
     ],
-    "slug": "lentil-curry",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/lentil%20curry-3taRDK60Jyydy4SJmDe2acPRJHtyHp"
+    "slug": "lentil-curry"
   },
   {
     "title": "Chicken Pot Pie Casserole",
@@ -1437,48 +1224,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "For added flavor, sprinkle shredded cheddar cheese over the top before baking.",
     "tags": [
-      "comfort food",
       "casserole",
-      "chicken",
       "dinner"
     ],
-    "slug": "chicken-pot-pie-casserole",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chicken%20pot%20pie%20casserole-w6ak6ol7UBnVvNO9W3NKYiEYkYx1Mc"
-  },
-  {
-    "slug": "korean-beef-sesame-noodles",
-    "title": "20 Minute Korean Beef Sesame Noodles",
-    "description": "Quick-cooking, gluten-free rice noodles tossed in a sweet and spicy Korean chili stir-fried sauce with caramelized beef, shallots, and summer vegetables. Plus, untraditional, but delicious, garden fresh basil. Every bite is filled with saucy noodles, vegetables, caramelized meat, and just the right amount of spice – delicious and easy.",
-    "prepTime": "15 minutes",
-    "cookTime": "10 minutes",
-    "totalTime": "25 minutes",
-    "servings": "4 servings",
-    "ingredients": [
-      "4 cloves garlic, chopped",
-      "1 tablespoon chopped fresh ginger",
-      "1/2 cup tamari or soy sauce",
-      "1/4 cup honey",
-      "2 tablespoons rice vinegar",
-      "2-3 tablespoons Gochujang (Korean chili paste)",
-      "1 tablespoon toasted sesame oil",
-      "8 ounces brown rice noodles",
-      "2 tablespoons sesame oil",
-      "3 cups mixed stir fry vegetables",
-      "3 shallots, sliced",
-      "1 pound flank steak or chicken breast, sliced thin",
-      "1/4 cup toasted sesame seeds",
-      "1/2 cup fresh basil"
-    ],
-    "instructions": [
-      "To make the sauce, combine garlic, ginger, tamari or soy sauce, honey, rice vinegar, Gochujang, and toasted sesame oil in a glass jar. Shake or whisk to combine.",
-      "Cook the rice noodles according to package directions. Drain and rinse under cold water.",
-      "Heat 1 tablespoon sesame oil in a large skillet over high heat. Add the vegetables and cook until wilted, 2-3 minutes. Stir in 2 tablespoons of the sauce. Cook until the sauce coats the veggies. Remove from the pan.",
-      "In the same skillet, add 1 tablespoon sesame oil. Add the shallots and cook 2 minutes, until deeply softened. Add the beef and cook, undisturbed, until seared, 2 minutes. Toss the meat, then pour in the sauce. Simmer 1 minute, then stir in the noodles and vegetables. Cook 2-3 minutes, until the sauce coats the noodles.",
-      "Remove from the heat and stir in the basil and sesame seeds. Serve topped with fresh basil."
-    ],
-    "notes": "For a vegetarian option, omit the beef and use tofu or additional vegetables. Adjust the amount of Gochujang to control the spice level.",
-    "tags": ["quick", "noodles", "beef", "spicy", "Korean", "dinner"],
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Korean%20Beef%20Sesame%20Noodles-w6Myyo61k6vy0XfEDJfsRQJjUQM3uz"
+    "slug": "chicken-pot-pie-casserole"
   },
   {
     "title": "Bibim Guksu (Korean Spicy Cold Noodles)",
@@ -1508,13 +1257,9 @@ const recipes: Recipe[] = [
     "notes": "For added flavor, include kimchi or sliced pear as toppings.",
     "tags": [
       "Korean",
-      "noodles",
-      "spicy",
-      "cold dish",
       "vegetarian"
     ],
-    "slug": "bibim-guksu-korean-spicy-cold-noodles",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Bimbim%20Guksu-Ki0TzY8K9rM0rPjs1pj91ZzBR12b9W"
+    "slug": "bibim-guksu-korean-spicy-cold-noodles"
   },
   {
     "title": "Chickpea Paprikash",
@@ -1546,13 +1291,10 @@ const recipes: Recipe[] = [
     ],
     "notes": "Serve over pasta, rice, or with crusty bread for a complete meal.",
     "tags": [
-      "vegetarian",
-      "Hungarian",
-      "comfort food",
-      "dinner"
+      "dinner",
+      "vegetarian"
     ],
-    "slug": "chickpea-paprikash",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Chicken%20Paprikash-GEwXrtf7ZIi7TDPshQt0JIc71x0nor"
+    "slug": "chickpea-paprikash"
   },
   {
     "title": "Bibimbap Sauce",
@@ -1578,13 +1320,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "This sauce adds a spicy and savory kick to various Korean dishes.",
     "tags": [
-      "Korean",
-      "sauce",
-      "spicy",
-      "condiment"
+      "Korean"
     ],
-    "slug": "bibimbap-sauce",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Bimbimbap%20Sauce-5izlIfSV0UwgQ12zRY04zraKIWpWYj"
+    "slug": "bibimbap-sauce"
   },
   {
     "title": "Pad Thai",
@@ -1622,13 +1360,9 @@ const recipes: Recipe[] = [
     "notes": "Customize with your preferred protein and adjust the spiciness to taste.",
     "tags": [
       "Thai",
-      "noodles",
-      "stir-fry",
-      "quick",
       "dinner"
     ],
-    "slug": "pad-thai",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Pad%20Thai-CjS4axnPCCDmDsIu7R3NGYG9Sw8xl5"
+    "slug": "pad-thai"
   },
   {
     "title": "Tuscan Sausage Pasta",
@@ -1660,13 +1394,9 @@ const recipes: Recipe[] = [
     "notes": "For a lighter version, substitute heavy cream with half-and-half.",
     "tags": [
       "Italian",
-      "pasta",
-      "sausage",
-      "creamy",
       "dinner"
     ],
-    "slug": "tuscan-sausage-pasta",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Tuscan%20Pasta-i1NDGiMtqBfhZc05ENllnKXZ4OJutg"
+    "slug": "tuscan-sausage-pasta"
   },
   {
     "title": "Blanched Green Beans",
@@ -1689,14 +1419,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Blanched green beans can be stored in the refrigerator for up to 3 days.",
     "tags": [
-      "vegetarian",
-      "vegan",
-      "side dish",
-      "healthy",
-      "quick"
+      "vegetarian"
     ],
-    "slug": "blanched-green-beans",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Green%20Beans-Uw9xXInK2jYUo33H1IuCIYJtXJfXEL"
+    "slug": "blanched-green-beans"
   },
   {
     "title": "No-Bake Energy Bites",
@@ -1723,14 +1448,9 @@ const recipes: Recipe[] = [
     ],
     "notes": "Customize with your favorite mix-ins like dried fruit or nuts.",
     "tags": [
-      "snack",
-      "no-bake",
-      "healthy",
-      "vegetarian",
-      "quick"
+      "vegetarian"
     ],
-    "slug": "no-bake-energy-bites",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Energy%20Bites-tL4HpldC34kXnzdAyGVvEH8o7ETcLA"
+    "slug": "no-bake-energy-bites"
   },
   {
     "title": "Iced Matcha Latte",
@@ -1756,111 +1476,8 @@ const recipes: Recipe[] = [
     "notes": "Adjust the amount of matcha and sweetener to taste.",
     "tags": [
       "beverage",
-      "matcha",
-      "iced",
-      "vegetarian",
-      "quick", 
-      "drink"
+      "vegetarian"
     ],
-    "slug": "iced-matcha-latte",
-    "imageUrl": "https://fscu2afaoibqibuo.public.blob.vercel-storage.com/Matcha-cdXGbXyXeuoPibS8M66mFEikvKhmpM"
+    "slug": "iced-matcha-latte"
   }
 ]
-
-// Utility functions
-
-// Get all recipes
-export function getAllRecipes(): Recipe[] {
-  return recipes
-}
-
-// Get a recipe by slug
-export function getRecipeBySlug(slug: string): Recipe | undefined {
-  return recipes.find((recipe) => recipe.slug === slug)
-}
-
-// Get all recipe slugs
-export function getAllRecipeSlugs(): string[] {
-  return recipes.map((recipe) => recipe.slug)
-}
-
-// Get all unique categories (derived from tags)
-export function getAllCategories(): string[] {
-  const categoriesSet = new Set<string>()
-
-  recipes.forEach((recipe) => {
-    recipe.tags.forEach((tag) => {
-      categoriesSet.add(tag)
-    })
-  })
-
-  return Array.from(categoriesSet).sort()
-}
-
-// Get all unique tags
-export function getAllTags(): string[] {
-  const tagsSet = new Set<string>()
-
-  recipes.forEach((recipe) => {
-    recipe.tags.forEach((tag) => {
-      tagsSet.add(tag)
-    })
-  })
-
-  return Array.from(tagsSet).sort()
-}
-
-// Get featured recipes
-export function getFeaturedRecipes(count = 3): Recipe[] {
-  // In a real app, you might have a "featured" flag or use other criteria
-  return recipes.slice(0, count)
-}
-
-// Filter recipes by category and/or tags
-interface FilterOptions {
-  category?: string
-  tags?: string[]
-}
-
-export function getFilteredRecipes({ category, tags = [] }: FilterOptions): Recipe[] {
-  return recipes.filter((recipe) => {
-    // Filter by category if provided
-    if (category && !recipe.tags.includes(category)) {
-      return false
-    }
-
-    // Filter by tags if provided
-    if (tags.length > 0 && !tags.every((tag) => recipe.tags.includes(tag))) {
-      return false
-    }
-
-    return true
-  })
-}
-
-// Search recipes by query
-export function searchRecipes(query: string): Recipe[] {
-  const searchTerms = query
-    .toLowerCase()
-    .split(" ")
-    .filter((term) => term.length > 0)
-
-  if (searchTerms.length === 0) {
-    return []
-  }
-
-  return recipes.filter((recipe) => {
-    const searchableText = [
-      recipe.title,
-      recipe.description,
-      ...recipe.ingredients,
-      ...recipe.instructions,
-      recipe.notes || "",
-      ...recipe.tags,
-    ]
-      .join(" ")
-      .toLowerCase()
-
-    return searchTerms.some((term) => searchableText.includes(term))
-  })
-}
